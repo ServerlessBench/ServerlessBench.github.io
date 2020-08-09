@@ -56,6 +56,7 @@ class Home extends Language {
         <section className="top-section">
           <Header
             currentKey="home"
+	    title="ServerlessBench"
             type={headerType}
             logo={headerLogo}
             language={language}
