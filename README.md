@@ -1,8 +1,8 @@
-# Dubbo Official Website
+# ServerlessBench Website
 
-[![CI Status](https://github.com/apache/dubbo-website/workflows/CI/badge.svg?branch=master)](https://github.com/apache/dubbo-website/actions)
+This project keeps all sources used for building up serverlessbench website which's served at https://serverlessbench.systems.
 
-This project keeps all sources used for building up dubbo official website which's served at https://dubbo.apache.org.
+The website is forked from Dubbo's website: https://dubbo.apache.org, and build using docsite.
 
 
 ## Prerequisite
@@ -47,8 +47,6 @@ keywords: keywords1,keywords2,keywords3
 description: some description
 ---
 ```
-
-Refer to [this blog](blog/zh-cn/how-to-involve-dubbo-community.md)
 
 
 ## Guide for adding new document
