@@ -1,6 +1,16 @@
 {
   "en-us": [
     {
+      "filename": "developers_dev.md",
+      "link": "/en-us/docs/developers/developers_dev.html",
+      "meta": {
+        "layout": "clean",
+        "title": "\"Team Members\"",
+        "date": "2020-08-08 17:50:00",
+        "categories": "main"
+      }
+    },
+    {
       "filename": "README.md",
       "link": "/en-us/docs/user/README.html",
       "meta": {}
@@ -17,6 +27,16 @@
     }
   ],
   "zh-cn": [
+    {
+      "filename": "developers_dev.md",
+      "link": "/zh-cn/docs/developers/developers_dev.html",
+      "meta": {
+        "layout": "clean",
+        "title": "\"Team Members\"",
+        "date": "2020-08-08 17:50:00",
+        "categories": "main"
+      }
+    },
     {
       "filename": "README.md",
       "link": "/zh-cn/docs/user/README.html",
