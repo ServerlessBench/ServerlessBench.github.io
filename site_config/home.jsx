@@ -4,7 +4,7 @@ export default {
   'zh-cn': {
     brand: {
       brandName: 'ServerlessBench',
-      briefIntroduction: 'Serverless 平台开源的分析与测试集。',
+      briefIntroduction: 'Serverless计算开源基准测试集。',
       getStartedButton: {
         text: '快速开始',
         link: '/zh-cn/docs/user/quick-start.html',
@@ -20,7 +20,7 @@ export default {
     },
     introduction: {
       title: 'Serverless计算基准测试集',
-      desc: 'ServerlessBench是一个通用的，简单的，易用的Serverless计算基准测试集，旨在为Serverless函数用户以及平台开发者提供关键性的见解，从而帮助他们更加深入地理解并优化自己的工作。',
+      desc: 'ServerlessBench是一个通用，简单，且易用的Serverless计算基准测试集，旨在为Serverless计算的用户以及平台开发者提供关键性的见解，从而帮助他们更加深入地理解并优化自己的工作。',
       img: '/img/serverlessbench-app-workloads.png',
     },
     features: {
@@ -28,23 +28,23 @@ export default {
       list: [
         {
           img: '/img/feature_transpart.png',
-          title: '包含指标齐全',
+          title: '齐全的Serverless场景测试指标',
           content: 'ServerlessBench包含了各式各样的、完备的测试指标，包括Serverless从性能到应用的组成方式等多个方面，方便使用者对Serverless应用进行全方位的刻画与分析。',
         },
         {
           img: '/img/feature_loadbalances.png',
-          title: '包含语言齐全',
-          content: 'ServerlessBench包含了C、Java、Python、Nodejs、Ruby多种语言，可以用于分析多种语言作为Serverless函数的特性，同时便于多种语言的开发者使用。',
+          title: '覆盖多种Serverless语言',
+          content: 'ServerlessBench包含了C、Java、Python、Nodejs、Ruby多种语言，可以用于分析使用不同语言开发Serverless函数的特性，同时便于多种语言的开发者使用。',
         },
         {
           img: '/img/feature_service.png',
-          title: '支持开源平台和公有云平台',
-          content: 'ServerlessBench的部署环境包含了开源平台（如OpenWhisk，Fn）以及常用的公有云平台（AWS Lambda），因此既可以从Serverless平台开发者的角度对Serverless函数的完整运行过程进行测试，也可以从用户的角度分析应用在商用平台上的特点。',
+          title: '支持多种Serverless平台',
+          content: 'ServerlessBench的部署环境包含了开源平台（如OpenWhisk，Fn）以及常用的公有云平台（AWS Lambda），因此既可以从Serverless平台开发者的角度对Serverless函数的完整运行过程进行测试，也可以从用户的角度分析应用在不同平台上的特点和表现。',
         },
         {
           img: '/img/feature_hogh.png',
-          title: '集成了真实场景应用',
-          content: 'ServerlessBench收集了现实中具有代表性的四个热门应用，方便代表Serverless应用在现实场景中的特性。',
+          title: '集成真实场景应用',
+          content: 'ServerlessBench包含了现实中具有代表性的Serverless应用，可以分析平台在应用于现实场景中的特性和表现。',
         },
       ],
     },
