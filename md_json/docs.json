@@ -49,8 +49,7 @@
       "link": "/zh-cn/docs/user/background.html",
       "meta": {
         "title": "背景",
-        "keywords": "单一应用架构,垂直应用架构,分布式服务架构,流动计算架构",
-        "description": "本文介绍了网站应用的演进"
+        "description": "本文介绍了Serverless计算的背景"
       }
     },
     {
