@@ -27,16 +27,6 @@ class Footer extends React.Component {
             </div>
             <div className="col col-4">
               <dl>
-                <dt>{dataSource.asf.title}</dt>
-                {
-                  dataSource.asf.list.map((d, i) => (
-                    <dd key={i}><a href={getLink(d.link)} target={d.target || '_self'}>{d.text}</a></dd>
-                  ))
-                }
-              </dl>
-            </div>
-            <div className="col col-4">
-              <dl>
                 <dt>{dataSource.documentation.title}</dt>
                 {
                   dataSource.documentation.list.map((d, i) => (
@@ -44,16 +34,6 @@ class Footer extends React.Component {
                   ))
                 }
               </dl>
-            </div>
-            <div className="col col-4">
-            <dl>
-            <dt>{dataSource.resources.title}</dt>
-            {
-              dataSource.resources.list.map((d, i) => (
-                <dd key={i}><a href={getLink(d.link)} target={d.target || '_self'}>{d.text}</a></dd>
-              ))
-            }
-            </dl>
             </div>
           </div>
           <div className="copyright"><span>{dataSource.copyright}</span></div>

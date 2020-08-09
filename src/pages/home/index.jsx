@@ -35,7 +35,7 @@ class Home extends Language {
       }
     });
     // 写死协议，因github会做协议跳转，这种跳转会被Safari拦截
-    fetch('https://api.github.com/repos/apache/dubbo')
+    fetch('https://api.github.com/repos/ServerlessBench/ServerlessBench')
       .then(res => res.json())
       .then((data) => {
         this.setState({
@@ -71,20 +71,6 @@ class Home extends Language {
             <div className="button-area">
               <Button type="primary" link={getLink(dataSource.brand.getStartedButton.link)}>{dataSource.brand.getStartedButton.text}</Button>
               <Button type="normal" link={getLink(dataSource.brand.viewOnGithubButton.link)}>{dataSource.brand.viewOnGithubButton.text}</Button>
-            </div>
-            <div className="github-buttons">
-              <a href="https://github.com/apache/dubbo" target="_blank" rel="noopener noreferrer">
-                <div className="star">
-                  <img src="https://img.alicdn.com/tfs/TB1FlB1JwHqK1RjSZFPXXcwapXa-32-32.png" />
-                  <span className="count">{starCount}</span>
-                </div>
-              </a>
-              <a href="https://github.com/apache/dubbo/fork" target="_blank" rel="noopener noreferrer">
-                <div className="fork">
-                  <img src="https://img.alicdn.com/tfs/TB1zbxSJwDqK1RjSZSyXXaxEVXa-32-32.png" />
-                  <span className="count">{forkCount}</span>
-                </div>
-              </a>
             </div>
               <div className="button-area">
                 <Button type="primary" link={getLink(dataSource.brand.Dubbo3Button.link)}>{dataSource.brand.Dubbo3Button.text}</Button>
@@ -123,17 +109,6 @@ class Home extends Language {
               <a href={getLink(dataSource.start.button.link)}>{dataSource.start.button.text}</a>
               </div>
             <div className="right-part"><img src={`${window.rootPath}/img/quick_start.png`} /></div>
-          </div>
-        </section>
-        <section className="users-section">
-          <h3>{dataSource.users.title}</h3>
-          <p>{dataSource.users.desc}</p>
-          <div className="users">
-          {
-            dataSource.users.list.map((user, i) => (
-              <img src={`${window.rootPath}${user}`} key={i} />
-            ))
-          }
           </div>
         </section>
         <Footer logo={`${window.rootPath}/img/dubbo_gray.png`} />

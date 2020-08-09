@@ -3,24 +3,24 @@ import React from 'react';
 export default {
   'zh-cn': {
     brand: {
-      brandName: 'Apache Dubbo',
-      briefIntroduction: 'Apache Dubbo™ 是一款高性能Java RPC框架。',
+      brandName: 'ServerlessBench',
+      briefIntroduction: 'Serverless 平台开源的分析与测试集。',
       getStartedButton: {
         text: '快速开始',
         link: '/zh-cn/docs/user/quick-start.html',
       },
       viewOnGithubButton: {
         text: 'GITHUB',
-        link: 'https://github.com/apache/dubbo',
+        link: 'https://github.com/ServerlessBench/ServerlessBench',
       },
       Dubbo3Button: {
-        text: 'Dubbo 3.0 即将发布，敬请期待...',
-        link: '/documentations/3.0/zh-cn/site/',
+        text: 'SOCC 2020 论文',
+        link: '#',
       }
     },
     introduction: {
-      title: '高性能Java RPC框架',
-      desc: 'Apache Dubbo |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。',
+      title: 'ServerlessBench 测试集',
+      desc: 'TODO 一句话介绍ServerlessBench。',
       img: '/img/architecture.png',
     },
     features: {
@@ -60,59 +60,34 @@ export default {
     },
     start: {
       title: '快速开始',
-      desc: '只需通过几行代码即可快速构建一个Dubbo应用。',
+      //desc: '只需通过几行代码即可快速构建一个Dubbo应用。',
       img: '/img/quick_start.png',
       button: {
         text: '阅读更多',
         link: '/zh-cn/docs/user/quick-start.html',
       },
     },
-    users: {
-      title: '谁在使用Dubbo',
-      desc: <span>请在 <a rel="noopener noreferrer" target="_blank" href="https://github.com/apache/dubbo/issues/1012">Wanted: who&#39;s using dubbo</a> 上提供信息来帮助Dubbo做的更好。</span>,
-      list: [
-        '/img/users_alibaba.png',
-        '/img/users_kingdee.png',
-        '/img/users_dangdang.png',
-        '/img/users_didi.png',
-        '/img/users_qunar.png',
-        '/img/users_wanglian.png',
-        '/img/users_kaola.png',
-        '/img/users_zhengcaiyun.png',
-        '/img/users_chinalife.png',
-        '/img/users_haier.png',
-        '/img/users_yinlian.png',
-        '/img/users_telecom.png',
-        '/img/users_weidian.png',
-        '/img/users_icbc.png',
-        '/img/users_handu.png',
-        '/img/users_rograndec.png',
-	'/img/user_chuangjinzhitou.png'
-        // '/img/users_other1.png',
-        // '/img/users_other2.png'
-      ],
-    },
   },
   'en-us': {
     brand: {
-      brandName: 'Apache Dubbo',
-      briefIntroduction: 'Apache Dubbo™ is a high-performance, java based open source RPC framework.',
+      brandName: 'ServerlessBench',
+      briefIntroduction: 'ServerlessBench is comprehensive benchmark suite for characterizing serverless platforms.',
       getStartedButton: {
         text: 'GET STARTED',
         link: '/en-us/docs/user/quick-start.html',
       },
       viewOnGithubButton: {
         text: 'GITHUB',
-        link: 'https://github.com/apache/dubbo',
+        link: 'https://github.com/ServerlessBench/ServerlessBench',
       },
       Dubbo3Button: {
-        text: 'Dubbo 3.0 will be available soon...',
-        link: '/documentations/3.0/en-us/site/',
+        text: 'SOCC 2020 paper comming soon...',
+        link: '#',
       }
     },
     introduction: {
-      title: 'A high performance Java RPC framework',
-      desc: 'Apache Dubbo |ˈdʌbəʊ| is a high-performance, light weight, java based RPC framework. Dubbo offers three key functionalities, which include interface based remote call, fault tolerance & load balancing, and automatic service registration & discovery.',
+	    title: 'TODO: tile of intro.',
+      desc: 'ServerlessBench is xxx (TODO of intro).',
       img: '/img/architecture.png',
     },
     features: {
@@ -152,37 +127,12 @@ export default {
     },
     start: {
       title: 'Quick start',
-      desc: 'This guide gets you started with dubbo in Java with a simple working example.',
+      //desc: 'This guide gets you started with dubbo in Java with a simple working example.',
       img: '/img/quick_start.png',
       button: {
         text: 'READ MORE',
         link: '/en-us/docs/user/quick-start.html',
       },
-    },
-    users: {
-      title: 'Who is using Dubbo',
-      desc: <span>Providing your info on <a rel="noopener noreferrer" target="_blank" href="https://github.com/apache/dubbo/issues/1012">Wanted: who&#39;s using dubbo</a> to help improving dubbo better</span>,
-      list: [
-        '/img/users_alibaba.png',
-        '/img/users_kingdee.png',
-        '/img/users_dangdang.png',
-        '/img/users_didi.png',
-        '/img/users_qunar.png',
-        '/img/users_wanglian.png',
-        '/img/users_kaola.png',
-        '/img/users_zhengcaiyun.png',
-        '/img/users_chinalife.png',
-        '/img/users_haier.png',
-        '/img/users_yinlian.png',
-        '/img/users_telecom.png',
-        '/img/users_weidian.png',
-        '/img/users_icbc.png',
-        '/img/users_handu.png',
-        '/img/users_rograndec.png',
-	'/img/user_chuangjinzhitou.png'
-        // '/img/users_other1.png',
-        // '/img/users_other2.png'
-      ],
     },
   },
 };
