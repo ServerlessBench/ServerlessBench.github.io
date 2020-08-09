@@ -18,7 +18,6 @@ class Footer extends React.Component {
     return (
       <footer className="footer-container">
         <div className="footer-body">
-          <img src={logo} />
           <img className="apache" src={`${window.rootPath}/img/IPADS-logo.png`} />
           <div className="cols-container">
             <div className="col col-12">

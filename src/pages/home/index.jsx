@@ -111,7 +111,7 @@ class Home extends Language {
             <div className="right-part"><img src={`${window.rootPath}/img/quick_start.png`} /></div>
           </div>
         </section>
-        <Footer logo={`${window.rootPath}/img/dubbo_gray.png`} />
+        <Footer logo={`${window.rootPath}/img/serverlessbench-logo.png`} />
       </div>
     );
   }
