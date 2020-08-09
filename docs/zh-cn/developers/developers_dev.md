@@ -1,6 +1,6 @@
 ---
 layout: clean 
-title:  "Team Members"
+title: Team Members
 date:   2020-08-08 17:50:00
 categories: main
 ---

@@ -62,7 +62,6 @@ class Home extends Language {
             onLanguageChange={this.onLanguageChange}
           />
           <div className="vertical-middle">
-            <img src={`${window.rootPath}/img/dubbo.png`} />
             <div className="product-name">
               <h2>{dataSource.brand.brandName}</h2>
               {/* <img src={`${window.rootPath}/img/incubating.svg`} /> */}
