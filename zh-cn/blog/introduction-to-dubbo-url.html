@@ -8,11 +8,11 @@
 	<meta name="description" content="URL 是 Dubbo 种一个重要的领域模型，了解它可以更加轻松的理解 Dubbo 的设计理念。" />
 	<!-- 网页标签标题 -->
 	<title>Dubbo 中的 URL 统一模型</title>
-	<link rel="shortcut icon" href="/ServerlessBench.github.io/img/dubbo.ico"/>
-	<link rel="stylesheet" href="/ServerlessBench.github.io/build/blogDetail.css" />
+	<link rel="shortcut icon" href="/img/dubbo.ico"/>
+	<link rel="stylesheet" href="/build/blogDetail.css" />
 </head>
 <body>
-	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/ServerlessBench.github.io/zh-cn/index.html"><img class="logo" src="/ServerlessBench.github.io/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/ServerlessBench.github.io/img/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/zh-cn/index.html">首页</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/zh-cn/docs/user/quick-start.html">文档</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/zh-cn/docs/developers/developers_dev.html">开发者</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/zh-cn/blog/download.html">下载</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1>Dubbo 中的 URL 统一模型</h1>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a target="_self" href="/zh-cn/index.html">首页</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/zh-cn/docs/user/quick-start.html">文档</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/zh-cn/docs/developers/developers_dev.html">开发者</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/zh-cn/blog/download.html">下载</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1>Dubbo 中的 URL 统一模型</h1>
 <h3>定义</h3>
 <p>在不谈及 dubbo 时，我们大多数人对 URL 这个概念并不会感到陌生。统一资源定位器 (<a href="https://www.ietf.org/rfc/rfc1738.txt">RFC1738</a>――Uniform Resource Locators (URL)）应该是最广为人知的一个 RFC 规范，它的定义也非常简单</p>
 <blockquote>
@@ -133,13 +133,13 @@ createExporter(URL url)
 <li>统一模型，它位于 org.apache.dubbo.common 包中，各个扩展模块都可以使用它作为参数的表达形式，简化了概念，降低了代码的理解成本。</li>
 </ol>
 <p>如果你能够理解 final 契约和 restful 契约，那我相信你会很好地理解 URL 契约。契约的好处我还是啰嗦一句：大家都这么做，就形成了默契，沟通是一件很麻烦的事，统一 URL 模型可以省去很多沟通成本，这边是 URL 统一模型存在的意义。</p>
-</section><footer class="footer-container"><div class="footer-body"><img src="/ServerlessBench.github.io/img/dubbo_gray.png"/><img class="apache" src="/ServerlessBench.github.io/img/apache_logo.png"/><div class="cols-container"><div class="col col-12"><h3></h3><p></p></div><div class="col col-4"><dl><dt>文档</dt><dd><a href="/ServerlessBench.github.io/zh-cn/docs/user/quick-start.html" target="_self">快速开始</a></dd><dd><a href="/ServerlessBench.github.io/zh-cn/docs/dev/build.html" target="_self">开发者指南</a></dd><dd><a href="/ServerlessBench.github.io/zh-cn/docs/admin/ops/dubbo-ops.html" target="_self">运维管理</a></dd><dd><a href="https://github.com/apache/dubbo-website/issues/new" target="_self">报告文档问题</a></dd><dd><a href="https://github.com/apache/dubbo-website" target="_self">编辑此文档</a></dd></dl></div></div><div class="copyright"><span>TODO Copyright © 2018-2019 The Apache Software Foundation. Apache and the Apache feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+</section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><img class="apache" src="/img/apache_logo.png"/><div class="cols-container"><div class="col col-12"><h3></h3><p></p></div><div class="col col-4"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/user/quick-start.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/dev/build.html" target="_self">开发者指南</a></dd><dd><a href="/zh-cn/docs/admin/ops/dubbo-ops.html" target="_self">运维管理</a></dd><dd><a href="https://github.com/apache/dubbo-website/issues/new" target="_self">报告文档问题</a></dd><dd><a href="https://github.com/apache/dubbo-website" target="_self">编辑此文档</a></dd></dl></div></div><div class="copyright"><span>TODO Copyright © 2018-2019 The Apache Software Foundation. Apache and the Apache feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
 	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
 	<script>
-		window.rootPath = '/ServerlessBench.github.io';
+		window.rootPath = '';
   </script>
-  <script src="/ServerlessBench.github.io/build/blogDetail.js"></script>
+  <script src="/build/blogDetail.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112489517-1"></script>
 	<script>
