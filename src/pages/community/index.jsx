@@ -39,16 +39,6 @@ class Community extends Language {
             ))}
           </Slider>
         </section>
-        <section className="eco-section">
-          <h3>{dataSource.ecos.title}</h3>
-          <div className="eco-lists">
-          {
-            dataSource.ecos.list.map((eco, i) => (
-              <EcoItem eco={eco} key={i} />
-            ))
-          }
-          </div>
-        </section>
         <section className="contact-section">
           <h3>{dataSource.contacts.title}</h3>
           <p>{dataSource.contacts.desc}</p>
@@ -56,17 +46,6 @@ class Community extends Language {
           {
             dataSource.contacts.list.map((contact, i) => (
               <ContactItem contact={contact} key={i} />
-            ))
-          }
-          </div>
-        </section>
-        <section className="contributor-section">
-          <h3>{dataSource.contributorGuide.title}</h3>
-          <p>{dataSource.contributorGuide.desc}</p>
-          <div className="contributor-list">
-          {
-            dataSource.contributorGuide.list.map((contributor, i) => (
-              <ContributorItem contributor={contributor} key={i} />
             ))
           }
           </div>

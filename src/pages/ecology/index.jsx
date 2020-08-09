@@ -48,54 +48,6 @@ class Ecology extends Language {
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <section className="eco-container">
-          <h4 className="eco-title">{dataSource.title}</h4>
-          <p className="eco-desc">{dataSource.desc}</p>
-          <div className="eco-body">
-            <div className="left-part">
-              {
-                dataSource.body.slice(0, -1).map(d => (
-                  <Memo key={d.title} title={d.title} bgColor={d.bgColor}>
-                    {
-                      d.children.map(sd => (
-                        <Card key={sd.title} title={sd.title}>
-                          {
-                            sd.children.map(ssd => (
-                              <ImgItem key={ssd.name} dataSource={ssd} />
-                            ))
-                          }
-                        </Card>
-                      ))
-                    }
-                  </Memo>
-                ))
-              }
-            </div>
-            {
-              dataSource.body.length > 1 ?
-              <div className="right-part">
-                {
-                  dataSource.body.slice(-1).map(d => (
-                    <Memo key={d.title} vertical={this.state.vertical} title={d.title} bgColor={d.bgColor}>
-                      {
-                        d.children.map(sd => (
-                          <Card key={sd.title} title={sd.title}>
-                            {
-                              sd.children.map(ssd => (
-                                <ImgItem key={ssd.name} dataSource={ssd} />
-                              ))
-                            }
-                          </Card>
-                        ))
-                      }
-                    </Memo>
-                  ))
-                }
-              </div>
-              : null
-            }
-          </div>
-        </section>
         <Footer logo={getLink('/img/dubbo_gray.png')} />
       </div>
     );

@@ -24,37 +24,27 @@ export default {
       img: '/img/serverlessbench-app-workloads.png',
     },
     features: {
-      title: '特性一览',
+      title: '为什么选择ServerlessBench?',
       list: [
         {
           img: '/img/feature_transpart.png',
-          title: '面向接口代理的高性能RPC调用',
-          content: '提供高性能的基于代理的远程调用能力，服务以接口为粒度，为开发者屏蔽远程调用底层细节。',
+          title: '包含指标齐全',
+          content: 'ServerlessBench包含了各式各样的、完备的测试指标，包括Serverless从性能到应用的组成方式等多个方面，方便使用者对Serverless应用进行全方位的刻画与分析。',
         },
         {
           img: '/img/feature_loadbalances.png',
-          title: '智能负载均衡',
-          content: '内置多种负载均衡策略，智能感知下游节点健康状况，显著减少调用延迟，提高系统吞吐量。',
+          title: '包含语言齐全',
+          content: 'ServerlessBench包含了C、Java、Python、Nodejs、Ruby多种语言，可以用于分析多种语言作为Serverless函数的特性，同时便于多种语言的开发者使用。',
         },
         {
           img: '/img/feature_service.png',
-          title: '服务自动注册与发现',
-          content: '支持多种注册中心服务，服务实例上下线实时感知。',
+          title: '支持开源平台和公有云平台',
+          content: 'ServerlessBench的部署环境包含了开源平台（如OpenWhisk，Fn）以及常用的公有云平台（AWS Lambda），因此既可以从Serverless平台开发者的角度对Serverless函数的完整运行过程进行测试，也可以从用户的角度分析应用在商用平台上的特点。',
         },
         {
           img: '/img/feature_hogh.png',
-          title: '高度可扩展能力',
-          content: '遵循微内核+插件的设计原则，所有核心能力如Protocol、Transport、Serialization被设计为扩展点，平等对待内置实现和第三方实现。',
-        },
-        {
-          img: '/img/feature_runtime.png',
-          title: '运行期流量调度',
-          content: '内置条件、脚本等路由策略，通过配置不同的路由规则，轻松实现灰度发布，同机房优先等功能。',
-        },
-        {
-          img: '/img/feature_maintenance.png',
-          title: '可视化的服务治理与运维',
-          content: '提供丰富服务治理、运维工具：随时查询服务元数据、服务健康状态及调用统计，实时下发路由策略、调整配置参数。',
+          title: '集成了真实场景应用',
+          content: 'ServerlessBench收集了现实中具有代表性的四个热门应用，方便代表Serverless应用在现实场景中的特性。',
         },
       ],
     },
@@ -82,38 +72,28 @@ export default {
       img: '/img/serverlessbench-app-workloads.png',
     },
     features: {
-      title: 'Feature List',
+      title: 'Why ServerlessBench?',
       list: [
         {
           img: '/img/feature_transpart.png',
-          title: 'Transparent interface based RPC',
-          content: 'Dubbo provides high performance interface based RPC, which is transparent to users.',
+          title: 'Complete and Serverless-customized metrics',
+          content: 'ServerlessBench evaluates various and complete metrics in different aspects of Serverless computing, including performance, composition methods, and so on. It helps users to thoroughly profile and analyze serverless applications.',
         },
         {
           img: '/img/feature_loadbalances.png',
-          title: 'Intelligent load balancing',
-          content: 'Dubbo supports multiple load balancing strategies out of the box, which perceives downstream service status to reduce overall latency and improve system throughput.',
+          title: 'Diverse function languages',
+          content: 'ServerlessBench consists of multiple languages, including C, Java, Python, NodeJS and Ruby. It enables the analysis of the characteristics of Serverless applications written by different languages. Moreover, it is convenient for different language developers to use.',
         },
         {
           img: '/img/feature_service.png',
-          title: 'Automatic service registration and discovery',
-          content: 'Dubbo supports multiple service registries, which can detect service online/offline instantly.',
+          title: 'Supporting both open-sourced platforms and commercial public cloud',
+          content: 'ServerlessBench comprises of workloads designed for open-source platforms (OpenWhisk, Fn) and a popular commercial public cloud (AWS Lambda). Users can not only evaluate the complete process of a serverless application from serverless platform developers perspective, but also characterize serverless applications on commercial platforms from serverless computing users perspective.',
         },
         {
           img: '/img/feature_hogh.png',
-          title: 'High extensibility',
-          content: 'Dubbo\'s micro-kernel and plugin design ensures that it can easily be extended by third party implementation across core features like Protocol, Transport, and Serialization.',
+          title: 'Real-world applications',
+          content: 'ServerlessBench collects four popular real-world applications, representing the features of serverless applications in the real world.',
         },
-        {
-          img: '/img/feature_runtime.png',
-          title: 'Runtime traffic routing',
-          content: 'Dubbo can be configured at runtime so that traffic can be routed according to different rules, which makes it easy to support features like blue-green deployment, data center aware routing, etc.',
-        },
-        {
-          img: '/img/feature_maintenance.png',
-          title: 'Visualized service governance',
-          content: 'Dubbo provides rich tools for service governance and maintenance such as querying service metadata, health status and statistics.',
-        }
       ]
     },
   },
