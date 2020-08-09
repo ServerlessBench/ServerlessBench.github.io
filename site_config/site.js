@@ -26,7 +26,7 @@ export default {
       {
         key: 'download',
         text: 'DOWNLOAD',
-        link: '/en-us/blog/download.html',
+        link: 'https://github.com/ServerlessBench/serverlessbench',
       },
     ],
     disclaimer: {
@@ -51,11 +51,11 @@ export default {
         },
         {
           text: 'Report a Doc Issue',
-          link: 'https://github.com/apache/dubbo-website/issues/new',
+          link: 'https://github.com/ServerlessBench/serverlessbench.github.io/issues/new',
         },
         {
           text: 'Edit This Page on GitHub',
-          link: 'https://github.com/apache/dubbo-website',
+          link: 'https://github.com/ServerlessBench/serverlessbench.github.io/',
         },
       ],
     },
@@ -83,7 +83,7 @@ export default {
       {
         key: 'download',
         text: '下载',
-        link: '/zh-cn/blog/download.html',
+        link: 'https://github.com/ServerlessBench/serverlessbench',
       },
     ],
     disclaimer: {
@@ -108,11 +108,11 @@ export default {
         },
         {
           text: '报告文档问题',
-          link: 'https://github.com/apache/dubbo-website/issues/new',
+          link: 'https://github.com/ServerlessBench/serverlessbench.github.io/issues/new',
         },
         {
           text: '编辑此文档',
-          link: 'https://github.com/apache/dubbo-website',
+          link: 'https://github.com/ServerlessBench/serverlessbench.github.io/',
         },
       ]
     },
