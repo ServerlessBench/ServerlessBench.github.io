@@ -92,7 +92,7 @@ class BlogDetail extends Language {
       <Header
         type="normal"
         currentKey={isDownload ? 'download' : 'blog'}
-        logo={`${window.rootPath}/img/dubbo_colorful.png`}
+        logo={`${window.rootPath}/img/serverlessbench-logo.png`}
         language={language}
         onLanguageChange={this.onLanguageChange}
       />
@@ -101,7 +101,7 @@ class BlogDetail extends Language {
           ref={(node) => { this.markdownContainer = node; }}
           dangerouslySetInnerHTML={{ __html }}
         />
-        <Footer logo={`${window.rootPath}/img/dubbo_gray.png`} />
+        <Footer/>
       </div>
     );
   }

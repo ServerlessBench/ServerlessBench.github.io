@@ -100,7 +100,7 @@ class Documentation extends Language {
       <Header
         currentKey={isDevelop ? 'developers' : 'docs'}
         type="normal"
-        logo={`${window.rootPath}/img/dubbo_colorful.png`}
+        logo={`${window.rootPath}/img/serverlessbench-logo.png`}
         language={language}
         onLanguageChange={this.onLanguageChange}
       />
@@ -113,7 +113,7 @@ class Documentation extends Language {
             dangerouslySetInnerHTML={{ __html }}
           />
         </section>
-        <Footer logo={`${window.rootPath}/img/dubbo_gray.png`} />
+        <Footer />
       </div>
     );
   }

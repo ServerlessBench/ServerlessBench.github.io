@@ -26,7 +26,7 @@ class Community extends Language {
       <Header
         currentKey="community"
         type="normal"
-        logo={`${window.rootPath}/img/dubbo_colorful.png`}
+        logo={`${window.rootPath}/img/serverlessbench-logo.png`}
         language={language}
         onLanguageChange={this.onLanguageChange}
       />
@@ -50,7 +50,7 @@ class Community extends Language {
           }
           </div>
         </section>
-        <Footer logo={`${window.rootPath}/img/dubbo_gray.png`} />
+        <Footer/>
       </div>
     );
   }

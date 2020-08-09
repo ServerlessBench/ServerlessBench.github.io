@@ -50,7 +50,7 @@ class Home extends Language {
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
-    const headerLogo = headerType === 'primary' ? `${window.rootPath}/img/dubbo_white.png` : `${window.rootPath}/img/dubbo_colorful.png`;
+    const headerLogo = headerType === 'primary' ? `${window.rootPath}/img/serverlessbench-logo-white.png` : `${window.rootPath}/img/serverlessbench-logo.png`;
     return (
       <div className="home-page">
         <section className="top-section">

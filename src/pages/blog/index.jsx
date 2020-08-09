@@ -21,7 +21,7 @@ class Blog extends Language {
         <Header
           type="normal"
           currentKey="blog"
-          logo={`${window.rootPath}/img/dubbo_colorful.png`}
+          logo={`${window.rootPath}/img/serverlessbench-logo.png`}
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
@@ -47,7 +47,7 @@ class Blog extends Language {
             </ul>
           </div>
         </section>
-        <Footer logo={`${window.rootPath}/img/dubbo_gray.png`} />
+        <Footer />
       </div>
     );
   }

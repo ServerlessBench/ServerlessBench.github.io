@@ -44,11 +44,11 @@ class Ecology extends Language {
         <Header
           type="normal"
           currentKey="ecology"
-          logo={getLink('/img/dubbo_colorful.png')}
+          logo={getLink('/img/serverlessbench-logo.png')}
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Footer logo={getLink('/img/dubbo_gray.png')} />
+        <Footer />
       </div>
     );
   }
