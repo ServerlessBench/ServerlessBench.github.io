@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="Dubbo, Asynchrony, Reactive" />
+	<meta name="description" content="Implementation background and practice of Dubbo server asynchronous interface" />
+	<!-- 网页标签标题 -->
+	<title>Implementation background and practice of Dubbo server asynchronous interface</title>
+	<link rel="shortcut icon" href="/ServerlessBench.github.io/img/dubbo.ico"/>
+	<link rel="stylesheet" href="/ServerlessBench.github.io/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/ServerlessBench.github.io/en-us/index.html"><img class="logo" src="/ServerlessBench.github.io/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/ServerlessBench.github.io/img/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/index.html">HOME</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/docs/user/quick-start.html">DOCS</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/docs/developers/developers_dev.html">DEVELOPERS</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/blog/download.html">DOWNLOAD</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1>Implementation background and practice of Dubbo server asynchronous interface</h1>
+<h2>Preface</h2>
+<p>It is suggested to make an understanding of the thread phase involved in the process of Dubbo first, please refer to <a href="http://dubbo.apache.org/en-us/blog/dubboAsync_client.html">Implementation background and practice of Dubbo client asynchronous interface</a> for details.</p>
+<h2>Implementation background</h2>
+<p>It is necessary to introduce the server-side thread strategy in more detail to deepen the user's judgment basis for selecting server-side asynchrony. It is also necessary to introduce coroutines, the &quot;secret weapon&quot; often used in server-side asynchrony.</p>
+<h3>Server-side thread strategy</h3>
+<p>Dubbo supports a variety of NIO frameworks to implement remoting protocols. Whether Netty, Mina or Grizzly, the implementations are much the same. They are all based on event-driven methods to establish network channels and read data streams. Taking introduction to <a href="https://javaee.github.io/grizzly/iostrategies.html">Thread Strategy</a> of Grizzly as an example, the following four categories are usually supported. Dubbo as an RPC framework, the default choice is the first strategy. Because it is impossible to determine whether the business services are CPU-intensive or IO blocking type. the first strategy is the most insurance strategy. Of course, after understanding these strategies, it is the most perfect choice to make targeted choices based on business scenarios.</p>
+<ol>
+<li><strong>Worker-thread Strategy</strong></li>
+</ol>
+<p>The most useful IOStrategy, where Selector thread delegates NIO events processing to a worker threads.</p>
+<p><img src="../../img/blog/dubboasyn_server/1.png" alt="workerthread-strategy.png | center | 371x244"></p>
+<p>This IOStrategy is very scalable and safe. We can change the size of selector and worker thread pool as required and there is no risk that some problem, which may occur during the specific NIO event processing, will impact other Channels registered on the same Selector.</p>
+<p>The disadvantage is the cost of thread context switching.</p>
+<ol start="2">
+<li><strong>Same-thread Strategy</strong></li>
+</ol>
+<p>Potentially the most efficient IOStrategy. Unlike the worker-thread IOStrategy, the same-thread IOStrategy processes NIO events in the current thread, avoiding expensive thread context switches.</p>
+<p><img src="../../img/blog/dubboasyn_server/2.png" alt="samethread-strategy.png | center | 389x264"></p>
+<p>This IOStrategy is still pretty scalable, because we can tune the selector thread pool size, but it does have drawbacks. Care needs to be taken that channel NIO event processing won’t block or execute any long lasting operation, because it may block the processing of other NIO events that occur on the same Selector.</p>
+<ol start="3">
+<li><strong>Dynamic Strategy</strong></li>
+</ol>
+<p>As mentioned previously worker-thread and same-thread strategies have distinct advantages and disadvantages. However, what if a strategy could try to swap them smartly during runtime depending on the current conditions (load, gathered statistics… etc)?</p>
+<p><img src="../../img/blog/dubboasyn_server/3.png" alt="dynamic-strategy.png | center | 361x387"></p>
+<p>Potentially this IOStrategy could bring a lot of benefit and allow finer control of the resources. However, it’s important to not overload the condition evaluation logic, as its complexity will make this IOStrategy inefficient comparing to previous two strategies.</p>
+<p>By the way, I want you to pay more attention to this strategy, which is probably the best combination of Dubbo server asynchrony.</p>
+<ol start="4">
+<li><strong>Leader-follower Strategy</strong></li>
+</ol>
+<p><img src="../../img/blog/dubboasyn_server/4.png" alt="leaderfollower-strategy.png | center | 443x286"></p>
+<p>This IOStrategy is similar to worker-thread IOStrategy, but instead of passing NIO event processing to a worker thread, it changes worker thread to a selector thread by passing it the control over Selector and the actual NIO event processing takes place in the current thread. This strategy actually confuses worker and IO thread stages, which is not recommended.</p>
+<h3>Coroutine and thread</h3>
+<p>In terms of CPU resource management, the minimum scheduling unit of OS and JVM is thread. The coroutine library implemented by business application through extension can have independent running unit. In fact, it is also done based on thread. The principle should be to save the context and switch to another coroutine when IO blocking or lock waiting is encountered.</p>
+<p><strong>In the default Dubbo thread strategy, there are worker thread pools to execute the business logic, but the ThreadPool Full problem often occurs. In order to release worker threads as soon as possible, another thread will be set up in the implementation of the business service. The cost is thread context switching again, and it's necessary to consider link-level data transfer (such as tracing information) and flow-control export controls, etc. Of course, if Dubbo can switch to the Same-thread strategy, combined with the coroutine library support, server-side asynchrony is a recommended use.</strong></p>
+<h2>The sample</h2>
+<p>Use an example to experience the Dubbo server-side asynchronous interface. For Demo code, visit <a href="https://github.com/dubbo/dubbo-samples/tree/master/dubbo-samples-notify">https://github.com/dubbo/dubbo-samples/tree/master/dubbo-samples-notify</a>。</p>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AsyncService</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sayHello</span><span class="hljs-params">(String name)</span> </span>{
+        System.out.println(<span class="hljs-string">"Main sayHello() method start."</span>);
+        <span class="hljs-keyword">final</span> AsyncContext asyncContext = RpcContext.startAsync();
+        <span class="hljs-keyword">new</span> Thread(() -&gt; {
+            asyncContext.signalContextSwitch();
+            System.out.println(<span class="hljs-string">"Attachment from consumer: "</span> + RpcContext.getContext().getAttachment(<span class="hljs-string">"consumer-key1"</span>));
+            System.out.println(<span class="hljs-string">"    -- Async start."</span>);
+            <span class="hljs-keyword">try</span> {
+                Thread.sleep(<span class="hljs-number">500</span>);
+            } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+                e.printStackTrace();
+            }
+            asyncContext.write(<span class="hljs-string">"Hello "</span> + name + <span class="hljs-string">", response from provider."</span>);
+            System.out.println(<span class="hljs-string">"    -- Async end."</span>);
+        }).start();
+        System.out.println(<span class="hljs-string">"Main sayHello() method end."</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"hello, "</span> + name;
+    }
+
+</code></pre>
+<h2>Practical suggestions</h2>
+<ul>
+<li>Don't rely too much on server-side asynchrony.</li>
+<li>Server-side asynchrony is basically a false proposition in the face of event-driven or Reactive.<span data-type="color" style="color:rgb(36, 41, 46)"><span data-type="background" style="background-color:rgb(255, 255, 255)">Supplement the reason: the server asynchrony is said Dubbo server-side business threads (default is 200) is not enough, but in the Event-Driven mode, 200 threads certainly do not need that much, just as much as the number of CPU cores. As long as the business implementation is non-blocking and pure asynchronous business logic processing, it is a waste of resources to use as many threads as possible.</span></span></li>
+<li>To use server-side asynchrony, it is recommended that the server-side thread strategy adopt the Same_thread pattern + Coroutine Library.</li>
+</ul>
+<h2>Conclusions</h2>
+<p>When Dubbo supports business applications, it encounters a variety of requirements scenarios, and server-side asynchrony provides users with a solution to deal with ThreadPool Full. In the case of ThreadPool Full, if the current system bottleneck is CPU, this solution is not recommended. If the system load is not high, increasing the number of worker threads or using server asynchrony can be considered.</p>
+</section><footer class="footer-container"><div class="footer-body"><img src="/ServerlessBench.github.io/img/dubbo_gray.png"/><img class="apache" src="/ServerlessBench.github.io/img/apache_logo.png"/><div class="cols-container"><div class="col col-12"><h3></h3><p></p></div><div class="col col-4"><dl><dt>Documentation</dt><dd><a href="/ServerlessBench.github.io/en-us/docs/user/quick-start.html" target="_self">Quick start</a></dd><dd><a href="/ServerlessBench.github.io/en-us/docs/dev/build.html" target="_self">Developer guide</a></dd><dd><a href="/ServerlessBench.github.io/en-us/docs/admin/ops/dubbo-ops.html" target="_self">Admin manual</a></dd><dd><a href="https://github.com/apache/dubbo-website/issues/new" target="_self">Report a Doc Issue</a></dd><dd><a href="https://github.com/apache/dubbo-website" target="_self">Edit This Page on GitHub</a></dd></dl></div></div><div class="copyright"><span>TODO Copyright © 2018-2019 The Apache Software Foundation. Apache and the Apache feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '/ServerlessBench.github.io';
+  </script>
+  <script src="/ServerlessBench.github.io/build/blogDetail.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112489517-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-112489517-1');
+	</script>
+</body>
+</html>

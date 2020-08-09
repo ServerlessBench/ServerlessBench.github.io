@@ -1,0 +1,6 @@
+{
+  "filename": "provider-demo.md",
+  "__html": "<h1>示例提供者安装</h1>\n<p>安装：</p>\n<pre><code class=\"language-sh\">git <span class=\"hljs-built_in\">clone</span> https://github.com/apache/dubbo.git\n<span class=\"hljs-built_in\">cd</span> dubbo/dubbo-demo/dubbo-demo-xml\n运行 dubbo-demo-xml-provider中的org.apache.dubbo.demo.provider.Application\n如果使用Intellij Idea 请加上-Djava.net.preferIPv4Stack=<span class=\"hljs-literal\">true</span>\n</code></pre>\n<p>配置：</p>\n<pre><code class=\"language-sh\">resources/spring/dubbo-provider.xml\n修改其中的dubbo:registry，替换成真实的注册中心地址，推荐使用zookeeper，如：\n&lt;dubbo:registry address=<span class=\"hljs-string\">\"zookeeper://127.0.0.1:2181\"</span>/&gt;\n</code></pre>\n",
+  "link": "/zh-cn/docs/admin/install/provider-demo.html",
+  "meta": {}
+}

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="dubbo-registry-nacos-integration" />
+	<meta name="description" content="dubbo-registry-nacos-integration" />
+	<!-- 网页标签标题 -->
+	<title>dubbo-registry-nacos-integration</title>
+	<link rel="shortcut icon" href="/ServerlessBench.github.io/img/dubbo.ico"/>
+	<link rel="stylesheet" href="/ServerlessBench.github.io/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/ServerlessBench.github.io/en-us/index.html"><img class="logo" src="/ServerlessBench.github.io/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/ServerlessBench.github.io/img/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/index.html">HOME</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/docs/user/quick-start.html">DOCS</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/docs/developers/developers_dev.html">DEVELOPERS</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/blog/download.html">DOWNLOAD</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1>Dubbo Integrates with Nacos to Become a Registry</h1>
+<p>Nacos is an important registry in Dubbo ecosystem, and dubbo-registry-nacos is the implementation of Dubbo-integrated Nacos registry.</p>
+<h2>Preparation Works</h2>
+<p>Before you integrate dubbo-registry-nacos into your Dubbo project, make sure the Nacos service is started in the background. If you are not familiar with the basic use of Nacos, you can refer to the Quick Start for Nacos: <a href="https://nacos.io/en-us/docs/quick-start.html">https://nacos.io/en-us/docs/quick-start.html</a>. Nacos versions above 0.6.1 are recommended.</p>
+<h2>Get Started Quickly</h2>
+<p>The operation steps for Dubbo to integrate Nacos into a registry are simple, the general steps can be divided into &quot;add Maven dependency&quot; and &quot;configure the registry.&quot;</p>
+<h2>Increase Maven Dependency</h2>
+<p>First, you need to add the Maven dependency of dubbo-registry-nacos to your project's pom.xml file, and it is strongly recommended that you use Dubbo 2.6.5:</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+
+    ...
+        
+    <span class="hljs-comment">&lt;!-- Dubbo Nacos registry dependency --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-registry-nacos<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>   
+    
+    <span class="hljs-comment">&lt;!-- Keep latest Nacos client version --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.nacos<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>nacos-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>[0.6.1,)<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    
+    <span class="hljs-comment">&lt;!-- Dubbo dependency --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.6.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    
+    <span class="hljs-comment">&lt;!-- Alibaba Spring Context extension --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.spring<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context-support<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+    ...
+    
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
+</code></pre>
+<p>When you add dubbo-registry-nacos to your project, you don't need to programmatically implement the service discovery and registration logic, the actual implementation is provided by the third-party package, and then to configure the Naocs registry.</p>
+<h2>Configure the Registry</h2>
+<p>Assuming your Dubbo application is assembled by the Spring Framework, there are two configuration options: Dubbo Spring externalization configuration and Spring XML configuration files, I strongly recommend the former.</p>
+<h2>Dubbo Spring Externalization Configuration</h2>
+<p>Dubbo Spring externalization configuration is a new feature introduced by Dubbo 2.5.8, which automatically generates and binds Dubbo configuration Bean through the Spring Environment property, simplifying configuration and lowering the threshold for microservice development.</p>
+<p>Assume your Dubbo application uses Zookeeper as the registry and its server IP address is 10.20.153.10, the registered address is also stored in the dubbo-config.properties file as a Dubbo externalization configuration attribute, as shown below:</p>
+<pre><code class="language-properties"><span class="hljs-comment">## application</span>
+<span class="hljs-meta">dubbo.application.name</span> = <span class="hljs-string">your-dubbo-application</span>
+<span class="hljs-comment">
+## Zookeeper registry address</span>
+<span class="hljs-meta">dubbo.registry.address</span> = <span class="hljs-string">zookeeper://10.20.153.10:2181</span>
+<span class="hljs-attr">...</span>
+</code></pre>
+<p>Assuming your Nacos Server is also running on server 10.20.153.10 and using the default Nacos service port 8848, you can simply adjust the dubbo.registry.address property as follows:</p>
+<pre><code class="language-properties"><span class="hljs-comment">## 其他属性保持不变</span>
+<span class="hljs-comment">
+## Nacos registry address</span>
+<span class="hljs-meta">dubbo.registry.address</span> = <span class="hljs-string">nacos://10.20.153.10:8848</span>
+<span class="hljs-attr">...</span>
+</code></pre>
+<p>Subsequently, restart your Dubbo application, and Dubbo's service delivery and consumption information can be displayed in the Nacos console:</p>
+<p><img src="../../img/blog/dubbo-registry-nacos-1.png" alt="image-20181213103845976"></p>
+<p>As shown in the figure, the service name prefixed with providers: is the meta-information for the service provider, and consumers: represents the meta-information of the service consumer. Click &quot;Details&quot; to view service status details:</p>
+<p><img src="../../img/blog/dubbo-registry-nacos-2.png" alt="image-20181213104145998"></p>
+<p>If you are using the Spring XML configuration file to assemble the Dubbo registry, refer to the next section.</p>
+<h2>Spring XML Configuration File</h2>
+<p>Also, assume your Dubbo application uses Zookeeper as the registry and its server IP address is 10.20.153.10 and assemble the Spring Bean in an XML file, as shown below:</p>
+<pre><code class="language-xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
+    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="hljs-attr">xmlns:dubbo</span>=<span class="hljs-string">"http://dubbo.apache.org/schema/dubbo"</span>
+    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd"</span>&gt;</span>
+ 
+    <span class="hljs-comment">&lt;!-- Provider application information for dependency calculation --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dubbo-provider-xml-demo"</span>  /&gt;</span>
+ 
+    <span class="hljs-comment">&lt;!-- Using the Zookeeper registry Zookeeper   --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">"zookeeper://10.20.153.10:2181"</span> /&gt;</span>
+ 	...
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span>
+</code></pre>
+<p>Similar to the Dubbo Spring externalization configuration, simply adjust the address property configuration:</p>
+<pre><code class="language-xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
+    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="hljs-attr">xmlns:dubbo</span>=<span class="hljs-string">"http://dubbo.apache.org/schema/dubbo"</span>
+    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd"</span>&gt;</span>
+ 
+    <span class="hljs-comment">&lt;!-- Provider application information for dependency calculation--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dubbo-provider-xml-demo"</span>  /&gt;</span>
+ 
+    <span class="hljs-comment">&lt;!-- Using the Nacos registry  --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">"nacos://10.20.153.10:8848"</span> /&gt;</span>
+ 	...
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span>
+</code></pre>
+<p>Once you restart the Dubbo application, you can also see that the registration meta-information for both service providers and consumers is presented in the Nacos console:</p>
+<p><img src="../../img/blog/dubbo-registry-nacos-3.png" alt="image-20181213113049185"></p>
+<p>Do you absolutely configure or switch Nacos registry super Easy? If you want to get more or unclear, refer to the complete example below.</p>
+<h2>Complete Example</h2>
+<p>The metadata in the above image is derived from the Dubbo Spring annotation-driven example and the Dubbo Spring XML configuration-driven example, both of which will be described below, you can choose your preferred programming model. Before we get into the formal discussion, let's look at the preparations for both, as they both rely on Java service interfaces and implementations. Also, ensure that the Nacos service is started in the local (127.0.0.1) environment.</p>
+<h3>Example Interfaces and Implementations</h3>
+<p>First, define the sample interface, as follows:</p>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> org.apache.dubbo.demo.service;
+
+<span class="hljs-comment">/**
+ * DemoService
+ *
+ * <span class="hljs-doctag">@since</span> 2.7.4
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DemoService</span> </span>{
+
+    <span class="hljs-function">String <span class="hljs-title">sayName</span><span class="hljs-params">(String name)</span></span>;
+
+}
+</code></pre>
+<p>Provide implementation classes for the above interfaces:</p>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> org.apache.dubbo.demo.service;
+
+<span class="hljs-keyword">import</span> org.apache.dubbo.config.annotation.Service;
+<span class="hljs-keyword">import</span> org.apache.dubbo.rpc.RpcContext;
+
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;
+
+<span class="hljs-comment">/**
+ * Default {<span class="hljs-doctag">@link</span> DemoService}
+ *
+ * <span class="hljs-doctag">@since</span> 2.7.4
+ */</span>
+<span class="hljs-meta">@Service</span>(version = <span class="hljs-string">"${demo.service.version}"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DefaultService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">DemoService</span> </span>{
+
+    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"${demo.service.name}"</span>)
+    <span class="hljs-keyword">private</span> String serviceName;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sayName</span><span class="hljs-params">(String name)</span> </span>{
+        RpcContext rpcContext = RpcContext.getContext();
+        <span class="hljs-keyword">return</span> String.format(<span class="hljs-string">"Service [name :%s , port : %d] %s(\"%s\") : Hello,%s"</span>,
+                serviceName,
+                rpcContext.getLocalPort(),
+                rpcContext.getMethodName(),
+                name,
+                name);
+    }
+}
+</code></pre>
+<p>Once the interface and implementation are ready, the annotation-driven and XML configuration-driven implementations will be used below.</p>
+<h2>Spring Annotation-driven Example</h2>
+<p>Dubbo 2.7.4 reconstructs the Spring annotation-driven programming model.</p>
+<h3>Service Provider Annotation-driven Implementation</h3>
+<ul>
+<li>Define property source of Dubbo provider externalization configuration - provider-config.properties</li>
+</ul>
+<pre><code class="language-properties"><span class="hljs-comment">## application</span>
+<span class="hljs-meta">dubbo.application.name</span> = <span class="hljs-string">dubbo-provider-demo</span>
+<span class="hljs-comment">
+## Nacos registry address</span>
+<span class="hljs-meta">dubbo.registry.address</span> = <span class="hljs-string">nacos://127.0.0.1:8848</span>
+<span class="hljs-comment">
+## Dubbo Protocol</span>
+<span class="hljs-meta">dubbo.protocol.name</span> = <span class="hljs-string">dubbo</span>
+<span class="hljs-meta">dubbo.protocol.port</span> = <span class="hljs-string">-1</span>
+<span class="hljs-comment">
+# Provider @Service version</span>
+<span class="hljs-meta">demo.service.version</span>=<span class="hljs-string">1.0.0</span>
+<span class="hljs-meta">demo.service.name</span> = <span class="hljs-string">demoService</span>
+</code></pre>
+<ul>
+<li>Implement service provider bootstrap - DemoServiceProviderBootstrap</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> org.apache.dubbo.demo.provider;
+
+<span class="hljs-keyword">import</span> org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
+<span class="hljs-keyword">import</span> org.apache.dubbo.demo.service.DemoService;
+
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.PropertySource;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-comment">/**
+ * {<span class="hljs-doctag">@link</span> DemoService} provider demo
+ */</span>
+<span class="hljs-meta">@EnableDubbo</span>(scanBasePackages = <span class="hljs-string">"org.apache.dubbo.demo.service"</span>)
+<span class="hljs-meta">@PropertySource</span>(value = <span class="hljs-string">"classpath:/provider-config.properties"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoServiceProviderBootstrap</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        AnnotationConfigApplicationContext context = <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext();
+        context.register(DemoServiceProviderBootstrap<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+        context.refresh();
+        System.out.println(<span class="hljs-string">"DemoService provider is starting..."</span>);
+        System.in.read();
+    }
+}
+
+</code></pre>
+<p>Wherein, the annotation @EnableDubbo activates the Dubbo annotation-driven and externalization configuration, its scanBasePackages property scans the specified Java package, exposes all service interface implementation classes labeled @Service as Spring Bean, and then exports the Dubbo service.</p>
+<p>@PropertySource is the standard import property configuration resource annotation introduced by Spring Framework 3.1, which provides externalization configuration for Dubbo.</p>
+<h2>Service consumer annotation-driven implementation</h2>
+<ul>
+<li>Define property source of Dubbo consumer externalization configuration - consumer-config.properties</li>
+</ul>
+<pre><code class="language-properties"><span class="hljs-comment">## Dubbo Application info</span>
+<span class="hljs-meta">dubbo.application.name</span> = <span class="hljs-string">dubbo-consumer-demo</span>
+<span class="hljs-comment">
+## Nacos registry address</span>
+<span class="hljs-meta">dubbo.registry.address</span> = <span class="hljs-string">nacos://127.0.0.1:8848</span>
+<span class="hljs-comment">
+# @Reference version</span>
+<span class="hljs-meta">demo.service.version</span>= <span class="hljs-string">1.0.0</span>
+</code></pre>
+<p>Similarly, the dubbo.registry.address property points to the Nacos registry, through which metadata about other Dubbo services is obtained.</p>
+<ul>
+<li>Implement service consumer bootstrap class - DemoServiceConsumerBootstrap</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> org.apache.dubbo.demo.consumer;
+
+<span class="hljs-keyword">import</span> org.apache.dubbo.config.annotation.Reference;
+<span class="hljs-keyword">import</span> org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
+<span class="hljs-keyword">import</span> org.apache.dubbo.demo.service.DemoService;
+
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.PropertySource;
+
+<span class="hljs-keyword">import</span> javax.annotation.PostConstruct;
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-comment">/**
+ * {<span class="hljs-doctag">@link</span> DemoService} consumer demo
+ */</span>
+<span class="hljs-meta">@EnableDubbo</span>
+<span class="hljs-meta">@PropertySource</span>(value = <span class="hljs-string">"classpath:/consumer-config.properties"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoServiceConsumerBootstrap</span> </span>{
+
+    <span class="hljs-meta">@Reference</span>(version = <span class="hljs-string">"${demo.service.version}"</span>)
+    <span class="hljs-keyword">private</span> DemoService demoService;
+
+    <span class="hljs-meta">@PostConstruct</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+            System.out.println(demoService.sayName(<span class="hljs-string">"小马哥（mercyblitz）"</span>));
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        AnnotationConfigApplicationContext context = <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext();
+        context.register(DemoServiceConsumerBootstrap<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+        context.refresh();
+        context.close();
+    }
+}
+
+</code></pre>
+<p>Similarly, the @EnableDubbo annotation activates the Dubbo annotation-driven and externalization configuration, although it currently belongs to the service consumer and does not require the Java package name to scan the service implementation labeled @Service.</p>
+<p>@Reference is a dependency injection annotation for Dubbo remote services that requires service provider and consumer contract interface, version, and group information. In the current service consumption example, the service version of DemoService is derived from the property configuration file consumer-config.properties.</p>
+<p>The @PostConstruct code shows that when the DemoServiceConsumerBootstrap Bean is initialized, it executes ten Dubbo remote method invocation.</p>
+<h3>Run the Annotation-driven Example</h3>
+<p>Start DemoServiceProviderBootstrap twice locally and the registry will have two health services:</p>
+<p><img src="../../img/blog/dubbo-registry-nacos-4.png" alt="image-20181213123909636"></p>
+<p>Run DemoServiceConsumerBootstrap again and the results are as follows:</p>
+<pre><code>Service [name :demoService , port : 20880] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20881] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20880] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20880] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20881] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20881] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20880] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20880] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20881] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :demoService , port : 20881] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+</code></pre>
+<p>Run correctly and the service consumer uses a load balancing strategy to allocate ten RPC calls equally to two Dubbo service provider instances.</p>
+<h3>Spring XML Configuration-driven Example</h3>
+<p>Spring XML configuration-driven is the programming model of traditional Spring assembly components.</p>
+<h4>Service Provider XML Configuration-driven</h4>
+<p>Define the service provider XML context configuration file - /META-INF/spring/dubbo-provider-context.xml</p>
+<pre><code class="language-xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
+       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+       <span class="hljs-attr">xmlns:dubbo</span>=<span class="hljs-string">"http://dubbo.apache.org/schema/dubbo"</span>
+       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd"</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- 
+
+Provider application information for dependency calculation
+ --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dubbo-provider-xml-demo"</span>/&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Using the Nacos registry --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">"nacos://127.0.0.1:8848"</span>/&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Using Dubbo protocol to expose services on random ports --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:protocol</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dubbo"</span> <span class="hljs-attr">port</span>=<span class="hljs-string">"-1"</span>/&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Declare the service interface to be exposed --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:service</span> <span class="hljs-attr">interface</span>=<span class="hljs-string">"org.apache.dubbo.demo.service.DemoService"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"demoService"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"2.0.0"</span>/&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Implement services like local beans --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"demoService"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.apache.dubbo.demo.service.DefaultService"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span>
+</code></pre>
+<ul>
+<li>Implement service provider bootstrap class - DemoServiceProviderBootstrap</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> org.apache.dubbo.demo.provider;
+
+<span class="hljs-keyword">import</span> org.apache.dubbo.demo.service.DemoService;
+
+<span class="hljs-keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-comment">/**
+ * {<span class="hljs-doctag">@link</span> DemoService} provider demo XML bootstrap
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoServiceProviderXmlBootstrap</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        ClassPathXmlApplicationContext context = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext();
+        context.setConfigLocation(<span class="hljs-string">"/META-INF/spring/dubbo-provider-context.xml"</span>);
+        context.refresh();
+        System.out.println(<span class="hljs-string">"DemoService provider (XML) is starting..."</span>);
+        System.in.read();
+    }
+}
+</code></pre>
+<h4>Service Consumer XML Configuration-driven</h4>
+<p>Define the consumer provider XML context configuration file - /META-INF/spring/dubbo- consumer-context.xml</p>
+<pre><code class="language-xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
+       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+       <span class="hljs-attr">xmlns:dubbo</span>=<span class="hljs-string">"http://dubbo.apache.org/schema/dubbo"</span>
+       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd"</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- 
+
+Provider application information for dependency calculation
+ --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dubbo-consumer-xml-demo"</span>/&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Using the Nacos registry--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">"nacos://127.0.0.1:8848"</span>/&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Reference service interface --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:reference</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"demoService"</span> <span class="hljs-attr">interface</span>=<span class="hljs-string">"org.apache.dubbo.demo.service.DemoService"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"2.0.0"</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span>
+</code></pre>
+<ul>
+<li>Implement service consumer bootstrap class - DemoServiceConsumerBootstrap</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> org.apache.dubbo.demo.consumer;
+
+<span class="hljs-keyword">import</span> org.apache.dubbo.demo.service.DemoService;
+
+<span class="hljs-keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-comment">/**
+ * {<span class="hljs-doctag">@link</span> DemoService} consumer demo XML bootstrap
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoServiceConsumerXmlBootstrap</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        ClassPathXmlApplicationContext context = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext();
+        context.setConfigLocation(<span class="hljs-string">"/META-INF/spring/dubbo-consumer-context.xml"</span>);
+        context.refresh();
+        System.out.println(<span class="hljs-string">"DemoService consumer (XML) is starting..."</span>);
+        DemoService demoService = context.getBean(<span class="hljs-string">"demoService"</span>, DemoService<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+            System.out.println(demoService.sayName(<span class="hljs-string">"小马哥（mercyblitz）"</span>));
+        }
+        context.close();
+    }
+}
+</code></pre>
+<h4>Run XML Configuration-driven Example</h4>
+<p>As such, start two DemoServiceProviderXmlBootstrap bootstraps and observe the changes in the Nacos registry service provider:</p>
+<p><img src="../../img/blog/dubbo-registry-nacos-5.png" alt="image-20181213125527201"></p>
+<p>The service version driven by the XML configuration is 2.0.0, so the registration service is correct.</p>
+<p>Run the service consumer bootstrap DemoServiceConsumerXmlBootstrap again and observe the console output:</p>
+<pre><code>Service [name :null , port : 20882] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20882] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20883] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20882] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20882] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20883] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20882] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20883] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20883] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+Service [name :null , port : 20883] sayName(&quot;小马哥（mercyblitz）&quot;) : Hello,小马哥（mercyblitz）
+</code></pre>
+<p>As a result, both operation and load balancing are normal due to the property <a href="http://demo.service.name">demo.service.name</a> has not been added to the current example, the &quot;name&quot; information is output as null. For more information, please refer to: <a href="https://github.com/apache/dubbo/tree/master/dubbo-registry/dubbo-registry-nacos">https://github.com/apache/dubbo/tree/master/dubbo-registry/dubbo-registry-nacos</a>.</p>
+<p>If you're interested in or fond of open source projects like Dubbo and Nacos, try clicking &quot;star&quot; to support them. The links are as follows:</p>
+<ul>
+<li>Apache Dubbo: <a href="https://github.com/apache/dubbo">https://github.com/apache/dubbo</a></li>
+<li>Dubbo Nacos Registry: <a href="https://github.com/apache/dubbo/tree/master/dubbo-registry/dubbo-registry-nacos">https://github.com/apache/dubbo/tree/master/dubbo-registry/dubbo-registry-nacos</a></li>
+<li>Alibaba Nacos: <a href="https://github.com/alibaba/nacos">https://github.com/alibaba/nacos</a></li>
+</ul>
+</section><footer class="footer-container"><div class="footer-body"><img src="/ServerlessBench.github.io/img/dubbo_gray.png"/><img class="apache" src="/ServerlessBench.github.io/img/apache_logo.png"/><div class="cols-container"><div class="col col-12"><h3></h3><p></p></div><div class="col col-4"><dl><dt>Documentation</dt><dd><a href="/ServerlessBench.github.io/en-us/docs/user/quick-start.html" target="_self">Quick start</a></dd><dd><a href="/ServerlessBench.github.io/en-us/docs/dev/build.html" target="_self">Developer guide</a></dd><dd><a href="/ServerlessBench.github.io/en-us/docs/admin/ops/dubbo-ops.html" target="_self">Admin manual</a></dd><dd><a href="https://github.com/apache/dubbo-website/issues/new" target="_self">Report a Doc Issue</a></dd><dd><a href="https://github.com/apache/dubbo-website" target="_self">Edit This Page on GitHub</a></dd></dl></div></div><div class="copyright"><span>TODO Copyright © 2018-2019 The Apache Software Foundation. Apache and the Apache feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '/ServerlessBench.github.io';
+  </script>
+  <script src="/ServerlessBench.github.io/build/blogDetail.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112489517-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-112489517-1');
+	</script>
+</body>
+</html>

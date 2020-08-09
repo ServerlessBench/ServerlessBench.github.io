@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="dubbo-basic-usage-dubbo-consumer-configuration" />
+	<meta name="description" content="dubbo-basic-usage-dubbo-consumer-configuration" />
+	<!-- 网页标签标题 -->
+	<title>dubbo-basic-usage-dubbo-consumer-configuration</title>
+	<link rel="shortcut icon" href="/ServerlessBench.github.io/img/dubbo.ico"/>
+	<link rel="stylesheet" href="/ServerlessBench.github.io/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/ServerlessBench.github.io/en-us/index.html"><img class="logo" src="/ServerlessBench.github.io/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/ServerlessBench.github.io/img/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/index.html">HOME</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/docs/user/quick-start.html">DOCS</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/docs/developers/developers_dev.html">DEVELOPERS</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/ServerlessBench.github.io/en-us/blog/download.html">DOWNLOAD</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1>DubboBasic Usage - Dubbo Consumer Configuration</h1>
+<h2>Dubbo Consumer Configuration</h2>
+<h3>Consumer Configuration Detailed</h3>
+<p>There are 3 ways to configure the Dubbo Consumer: XML configuration, API call mode configuration, and annotation mode configuration.</p>
+<h4>XML Configuration</h4>
+<h6>Example of the simplest configuration:</h6>
+<pre><code>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    Xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    Xmlns:dubbo=&quot;http://dubbo.apache.org/schema/dubbo&quot;
+    Xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd http://dubbo.apache.org/schema /dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd&quot;&gt;
+    &lt;dubbo:application name=&quot;hello-world-app&quot; /&gt;
+    &lt;dubbo:registry address=&quot;multicast://224.5.6.7:1234&quot; /&gt;
+    &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot; /&gt;
+    &lt;dubbo:reference id=&quot;demoServiceRemote&quot; interface=&quot;com.alibaba.dubbo.demo.DemoService&quot; /&gt;
+&lt;/beans&gt;
+</code></pre>
+<blockquote>
+<p>For the supported configuration tags and corresponding configuration items, refer to the usage in the provider.</p>
+</blockquote>
+<blockquote>
+<p>Next, focus on the configuration of &lt;dubbo:reference/&gt;.</p>
+</blockquote>
+<ul>
+<li>&lt;dubbo:reference/&gt; List of main attributes supported:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>service reference id, as java bean id, requires unique</td>
+</tr>
+<tr>
+<td>Interface</td>
+<td>interface name for finding services</td>
+</tr>
+<tr>
+<td>version</td>
+<td>version number, consistent with the service provider's version</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>service method call timeout (ms)</td>
+</tr>
+<tr>
+<td>retries</td>
+<td>The number of retry attempts by the remote service, excluding the first call, no need to retry, please set to 0</td>
+</tr>
+<tr>
+<td>Connections</td>
+<td>For each provider's maximum number of connections, rmi, http, hessian, etc. The short connection protocol indicates the number of restricted connections, and the dubbo equal-length connection association indicates the number of long connections established</td>
+</tr>
+<tr>
+<td>Loadbalance</td>
+<td>Load balancing policy, optional values: random, roundrobin, leastactive, respectively: random, polling, least active call</td>
+</tr>
+<tr>
+<td>async</td>
+<td>Whether to execute asynchronously, unreliable asynchronous, just ignore return value, do not block execution thread</td>
+</tr>
+<tr>
+<td>generic</td>
+<td>generalized call, can bypass</td>
+</tr>
+<tr>
+<td>check</td>
+<td>Check if the provider exists at startup, true error, false ignore</td>
+</tr>
+<tr>
+<td>Actives</td>
+<td>Maximum concurrent calls per method per service consumer</td>
+</tr>
+</tbody>
+</table>
+<p>For other configuration properties, please refer to xsd: <a href="http://dubbo.apache.org/schema/dubbo/dubbo.xsd">http://dubbo.apache.org/schema/dubbo/dubbo.xsd</a></p>
+<ul>
+<li>&lt;dubbo:method/&gt; As a child of &lt;dubbo:reference/&gt;, it can be configured for methods. The more commonly used attributes are:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>executes</td>
+<td>request ceiling for service execution</td>
+</tr>
+<tr>
+<td>retries</td>
+<td>Timeout retries</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>call timeout</td>
+</tr>
+<tr>
+<td>Loadbalance</td>
+<td>Load balancing policy, optional values: random, roundrobin, leastactive, respectively: random, polling, least active call</td>
+</tr>
+<tr>
+<td>async</td>
+<td>Whether to execute asynchronously, unreliable asynchronous, just ignore return value, do not block execution thread</td>
+</tr>
+<tr>
+<td>Actives</td>
+<td>Maximum concurrent call limit per service consumer</td>
+</tr>
+</tbody>
+</table>
+<p>For other properties, you can refer to xsd above.</p>
+<h6>Configured coverage relationship</h6>
+<p><img src="https://cdn.nlark.com/lark/0/2018/png/15841/1536496436861-1b63bc4e-3e59-4aa3-800e-a32cfe64950d.png" alt="undefined"></p>
+<p>Coverage diagram for <center> configuration</center></p>
+<p>It contains the configuration of the consumer side and the provider, pay attention to the distinction.</p>
+<h4>annotation</h4>
+<h6>Reference Annotation Remote Service</h6>
+<pre><code>
+Public class AnnotationConsumeService {
+
+    @com.alibaba.dubbo.config.annotation.Reference
+    Public AnnotateService annotateService;
+
+    // ...
+
+}
+
+</code></pre>
+<p>The configuration in this way is the same as the previous configuration in xml.</p>
+<blockquote>
+<p>To specify the way dubbo scans the path, refer to the implementation of the provider in the previous section.</p>
+</blockquote>
+<h4>api direct trigger</h4>
+<pre><code>Import com.alibaba.dubbo.rpc.config.ApplicationConfig;
+Import com.alibaba.dubbo.rpc.config.RegistryConfig;
+Import com.alibaba.dubbo.rpc.config.ConsumerConfig;
+Import com.alibaba.dubbo.rpc.config.ReferenceConfig;
+Import com.xxx.XxxService;
+// current application configuration
+
+ApplicationConfig application = new ApplicationConfig();
+application.setName(&quot;yyy&quot;);
+// Connect to the registry configuration
+RegistryConfig registry = new RegistryConfig();
+registry.setAddress(&quot;10.20.130.230:9090&quot;);
+registry.setUsername(&quot;aaa&quot;);
+registry.setPassword(&quot;bbb&quot;);
+ 
+// Note: ReferenceConfig is a heavy object that internally encapsulates the connection to the registry and the connection to the service provider.
+// reference remote service
+ReferenceConfig&lt;XxxService&gt; reference = new ReferenceConfig&lt;XxxService&gt;(); // This instance is heavy, encapsulates the connection to the registry and the connection to the provider, please cache it yourself, otherwise it may cause memory and connection leaks.
+
+reference.setApplication(application);
+reference.setRegistry(registry); // Multiple registries can use setRegistries()
+reference.setInterface(XxxService.class);
+reference.setVersion(&quot;1.0.0&quot;);
+
+// Use xxxService like local beans
+XxxService xxxService = reference.get();
+</code></pre>
+<h6>methodSpecial settings</h6>
+<pre><code>
+// Method level configuration
+List&lt;MethodConfig&gt; methods = new ArrayList&lt;MethodConfig&gt;();
+MethodConfig method = new MethodConfig();
+method.setName(&quot;createXxx&quot;);
+method.setTimeout(10000);
+method.setRetries(0);
+Methods.add(method);
+// reference remote service
+ReferenceConfig&lt;XxxService&gt; reference = new ReferenceConfig&lt;XxxService&gt;(); // This instance is heavy, encapsulates the connection to the registry and the connection to the provider, please cache it yourself, otherwise it may cause memory and connection leaks.
+...
+reference.setMethods(methods); // Set method level configuration
+</code></pre>
+<h3>Consumer Calling Remote Service</h3>
+<p>The above chapters are more from a configuration point of view, and then through a complete example, explain the complete use of dubbo consumer.</p>
+<p>There is only one service UserReadService in this example, there is a method getUserById. Need to call a remote service through Dubbo. The specific steps are as follows:</p>
+<ol>
+<li>Create a project
+If there is already a project, you can ignore it. Create a spring boot project that can be created at <a href="https://start.spring.io/">https://start.spring.io/</a>.
+The provider of the service has been defined in the provider section.</li>
+<li>Call the service</li>
+</ol>
+<pre><code>@RestController
+Public class UserTestController{
+    @Autowired
+    Private UserReadService userReadService;
+    @RequestMapping(&quot;/user/getById&quot;)
+    Public String getUserById(Long id){
+        // just test
+        Return userReadService.getUserById(id).toString();
+    }
+}
+</code></pre>
+<p>3.Dubbo configuration</p>
+<pre><code>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    Xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    Xmlns:dubbo=&quot;http://dubbo.apache.org/schema/dubbo&quot;
+    Xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd http://dubbo.apache.org/schema /dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd&quot;&gt;
+    &lt;dubbo:application name=&quot;hello-world-app&quot; /&gt;
+    &lt;dubbo:registry address=&quot;multicast://224.5.6.7:1234&quot; /&gt;
+    &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot; /&gt;
+    &lt;dubbo:reference id=&quot;userReadService&quot; interface=&quot;com.package.UserReadService&quot;check=&quot;false&quot; /&gt;
+&lt;/beans&gt;
+</code></pre>
+<p>Other ways of configuring Dubbo can refer to the relevant configuration in the previous section, or use the integrated dubbo spring boot starter mode.</p>
+</section><footer class="footer-container"><div class="footer-body"><img src="/ServerlessBench.github.io/img/dubbo_gray.png"/><img class="apache" src="/ServerlessBench.github.io/img/apache_logo.png"/><div class="cols-container"><div class="col col-12"><h3></h3><p></p></div><div class="col col-4"><dl><dt>Documentation</dt><dd><a href="/ServerlessBench.github.io/en-us/docs/user/quick-start.html" target="_self">Quick start</a></dd><dd><a href="/ServerlessBench.github.io/en-us/docs/dev/build.html" target="_self">Developer guide</a></dd><dd><a href="/ServerlessBench.github.io/en-us/docs/admin/ops/dubbo-ops.html" target="_self">Admin manual</a></dd><dd><a href="https://github.com/apache/dubbo-website/issues/new" target="_self">Report a Doc Issue</a></dd><dd><a href="https://github.com/apache/dubbo-website" target="_self">Edit This Page on GitHub</a></dd></dl></div></div><div class="copyright"><span>TODO Copyright © 2018-2019 The Apache Software Foundation. Apache and the Apache feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '/ServerlessBench.github.io';
+  </script>
+  <script src="/ServerlessBench.github.io/build/blogDetail.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112489517-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-112489517-1');
+	</script>
+</body>
+</html>
