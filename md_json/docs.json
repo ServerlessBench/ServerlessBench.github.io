@@ -21,6 +21,11 @@
       "meta": {}
     },
     {
+      "filename": "license.md",
+      "link": "/en-us/docs/user/license.html",
+      "meta": {}
+    },
+    {
       "filename": "quick-start.md",
       "link": "/en-us/docs/user/quick-start.html",
       "meta": {
@@ -51,6 +56,11 @@
         "title": "背景",
         "description": "本文介绍了Serverless计算的背景"
       }
+    },
+    {
+      "filename": "license.md",
+      "link": "/zh-cn/docs/user/license.html",
+      "meta": {}
     },
     {
       "filename": "quick-start.md",
