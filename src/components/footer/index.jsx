@@ -19,7 +19,7 @@ class Footer extends React.Component {
       <footer className="footer-container">
         <div className="footer-body">
           <img src={logo} />
-          <img className="apache" src={`${window.rootPath}/img/apache_logo.png`} />
+          <img className="apache" src={`${window.rootPath}/img/IPADS-logo.png`} />
           <div className="cols-container">
             <div className="col col-12">
               <h3>{dataSource.disclaimer.title}</h3>
