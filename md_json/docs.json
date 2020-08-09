@@ -23,7 +23,9 @@
     {
       "filename": "quick-start.md",
       "link": "/en-us/docs/user/quick-start.html",
-      "meta": {}
+      "meta": {
+        "title": "Quick start"
+      }
     }
   ],
   "zh-cn": [
@@ -55,9 +57,7 @@
       "filename": "quick-start.md",
       "link": "/zh-cn/docs/user/quick-start.html",
       "meta": {
-        "title": "快速启动",
-        "keywords": "XML configuration, Consumer, Provider",
-        "description": "使用 XML 配置方式快速上手 Dubbo"
+        "title": "快速开始"
       }
     }
   ]
