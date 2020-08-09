@@ -58,15 +58,6 @@ export default {
         },
       ],
     },
-    start: {
-      title: '快速开始',
-      //desc: '只需通过几行代码即可快速构建一个Dubbo应用。',
-      img: '/img/quick_start.png',
-      button: {
-        text: '阅读更多',
-        link: '/zh-cn/docs/user/quick-start.html',
-      },
-    },
   },
   'en-us': {
     brand: {
@@ -124,15 +115,6 @@ export default {
           content: 'Dubbo provides rich tools for service governance and maintenance such as querying service metadata, health status and statistics.',
         }
       ]
-    },
-    start: {
-      title: 'Quick start',
-      //desc: 'This guide gets you started with dubbo in Java with a simple working example.',
-      img: '/img/quick_start.png',
-      button: {
-        text: 'READ MORE',
-        link: '/en-us/docs/user/quick-start.html',
-      },
     },
   },
 };

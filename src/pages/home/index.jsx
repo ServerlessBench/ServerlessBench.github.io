@@ -101,16 +101,6 @@ class Home extends Language {
           }
           </ul>
         </section>
-        <section className="start-section">
-          <div className="start-body">
-            <div className="left-part">
-              <h3>{dataSource.start.title}</h3>
-              <p>{dataSource.start.desc}</p>
-              <a href={getLink(dataSource.start.button.link)}>{dataSource.start.button.text}</a>
-              </div>
-            <div className="right-part"><img src={`${window.rootPath}/img/quick_start.png`} /></div>
-          </div>
-        </section>
         <Footer logo={`${window.rootPath}/img/serverlessbench-logo.png`} />
       </div>
     );
