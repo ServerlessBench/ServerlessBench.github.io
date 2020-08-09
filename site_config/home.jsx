@@ -68,7 +68,7 @@ export default {
     },
     introduction: {
 	    title: 'Serverless Benchmark Suite',
-      desc: 'ServerlessBench is a general, simple, flexible benchmark suite for serverless computing, which intends to provide both serverless function users and infrastructure developers with key insights and helps them to understand their work more deeply.',
+      desc: 'ServerlessBench is a general, simple, and flexible benchmark suite for serverless computing, which intends to provide both serverless function users and infrastructure developers with key insights and helps them to understand their work more deeply.',
       img: '/img/serverlessbench-app-workloads.png',
     },
     features: {
@@ -76,23 +76,23 @@ export default {
       list: [
         {
           img: '/img/feature_transpart.png',
-          title: 'Complete and Serverless-customized metrics',
-          content: 'ServerlessBench evaluates various and complete metrics in different aspects of Serverless computing, including performance, composition methods, and so on. It helps users to thoroughly profile and analyze serverless applications.',
+          title: 'Serverless-customized metrics',
+          content: 'ServerlessBench evaluates various metrics in different aspects of Serverless computing, including performance, composition methods, and so on. It helps users to thoroughly profile and analyze serverless applications.',
         },
         {
           img: '/img/feature_loadbalances.png',
           title: 'Diverse function languages',
-          content: 'ServerlessBench consists of multiple languages, including C, Java, Python, NodeJS and Ruby. It enables the analysis of the characteristics of Serverless applications written by different languages. Moreover, it is convenient for different language developers to use.',
+          content: 'ServerlessBench consists of functions writen with multiple languages, including C, Java, Python, NodeJS and Ruby. It enables the analysis of the characteristics of Serverless applications written by different languages. Moreover, it is convenient for different language developers to use.',
         },
         {
           img: '/img/feature_service.png',
-          title: 'Supporting both open-sourced platforms and commercial public cloud',
-          content: 'ServerlessBench comprises of workloads designed for open-source platforms (OpenWhisk, Fn) and a popular commercial public cloud (AWS Lambda). Users can not only evaluate the complete process of a serverless application from serverless platform developers perspective, but also characterize serverless applications on commercial platforms from serverless computing users perspective.',
+          title: 'Supporting different serverless platforms',
+          content: 'ServerlessBench comprises of workloads designed for open-source platforms (OpenWhisk, Fn) and popular commercial public cloud (AWS Lambda). Users can not only evaluate the complete process of a serverless application from serverless platform developers perspective, but also characterize serverless applications on commercial platforms from serverless computing users perspective.',
         },
         {
           img: '/img/feature_hogh.png',
           title: 'Real-world applications',
-          content: 'ServerlessBench collects four popular real-world applications, representing the features of serverless applications in the real world.',
+          content: 'ServerlessBench collects a set of popular real-world applications, representing the features of serverless applications in the real world.',
         },
       ]
     },
