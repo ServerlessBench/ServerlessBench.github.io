@@ -1,6 +1,0 @@
-{
-  "filename": "gRPC.md",
-  "__html": "<h1>grpc://</h1>\n<p>Dubbo 自 2.7.5 版本开始支持 gRPC 协议，对于计划使用 HTTP/2 通信，或者想利用 gRPC 带来的 Stream、反压、Reactive 编程等能力的开发者来说，\n都可以考虑启用 gRPC 协议。</p>\n<h2>支持 gRPC 的好处</h2>\n<ul>\n<li>为期望使用 gRPC 协议的用户带来服务治理能力，方便接入 Dubbo 体系</li>\n<li>用户可以使用 Dubbo 风格的，基于接口的编程风格来定义和使用远程服务</li>\n</ul>\n<h2>如何在 Dubbo 中使用 gRPC</h2>\n<p>大概需要以下步骤：</p>\n<ol>\n<li>使用 IDL 定义服务</li>\n<li>配置 compiler 插件，本地预编译</li>\n<li>配置暴露/引用 Dubbo 服务</li>\n</ol>\n<p>具体可参见以下<a href=\"https://github.com/apache/dubbo-samples/tree/master/java/dubbo-samples-grpc/dubbo-samples-original\">示例</a></p>\n<p>除了原生 StreamObserver 接口类型之外，Dubbo 还支持 <a href=\"https://github.com/apache/dubbo-samples/tree/master/java/dubbo-samples-grpc/dubbo-samples-rxjava\">RxJava</a>、<a href=\"https://github.com/apache/dubbo-samples/tree/master/java/dubbo-samples-grpc/dubbo-samples-reactor\">Reactor</a> 编程风格的 API</p>\n",
-  "link": "/zh-cn/docs/user/references/protocol/gRPC.html",
-  "meta": {}
-}
