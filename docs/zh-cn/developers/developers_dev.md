@@ -25,7 +25,7 @@ Currently, she is focusing on infrastructure of serverless computing.
 
 ## Qingyuan Liu (柳清源)
 
-<img align="right" width="200" height="200" src="../user/sources/images/qingyuanliu.jpg"/>
+<img align="right" width="200" height="256" src="../user/sources/images/qingyuanliu.jpg"/>
 
 Qingyuan Liu is an undergraduate student in Shanghai Jiao Tong University. 
 His research interests include operating systems, cloud computing and virtualization. 
