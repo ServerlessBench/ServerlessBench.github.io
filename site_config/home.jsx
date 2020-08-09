@@ -71,7 +71,7 @@ export default {
   'en-us': {
     brand: {
       brandName: 'ServerlessBench',
-      briefIntroduction: 'ServerlessBench is comprehensive benchmark suite for characterizing serverless platforms.',
+      briefIntroduction: 'ServerlessBench is a comprehensive benchmark suite for characterizing serverless platforms.',
       getStartedButton: {
         text: 'GET STARTED',
         link: '/en-us/docs/user/quick-start.html',
@@ -86,8 +86,8 @@ export default {
       }
     },
     introduction: {
-	    title: 'TODO: tile of intro.',
-      desc: 'ServerlessBench is xxx (TODO of intro).',
+	    title: 'Serverless Benchmark Suite',
+      desc: 'ServerlessBench is a general, simple, flexible benchmark suite for serverless computing, which intends to provide both serverless function users and infrastructure developers with key insights and helps them to understand their work more deeply.',
       img: '/img/architecture.png',
     },
     features: {
