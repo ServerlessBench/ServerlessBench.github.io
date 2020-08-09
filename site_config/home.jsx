@@ -19,8 +19,8 @@ export default {
       }
     },
     introduction: {
-      title: 'ServerlessBench 测试集',
-      desc: 'TODO 一句话介绍ServerlessBench。',
+      title: 'Serverless计算基准测试集',
+      desc: 'ServerlessBench是一个通用的，简单的，易用的Serverless计算基准测试集，旨在为Serverless函数用户以及平台开发者提供关键性的见解，从而帮助他们更加深入地理解并优化自己的工作。',
       img: '/img/architecture.png',
     },
     features: {
