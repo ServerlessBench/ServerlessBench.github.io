@@ -21,7 +21,7 @@ export default {
     introduction: {
       title: 'Serverless计算基准测试集',
       desc: 'ServerlessBench是一个通用的，简单的，易用的Serverless计算基准测试集，旨在为Serverless函数用户以及平台开发者提供关键性的见解，从而帮助他们更加深入地理解并优化自己的工作。',
-      img: '/img/architecture.png',
+      img: '/img/serverlessbench-app-workloads.png',
     },
     features: {
       title: '特性一览',
@@ -88,7 +88,7 @@ export default {
     introduction: {
 	    title: 'Serverless Benchmark Suite',
       desc: 'ServerlessBench is a general, simple, flexible benchmark suite for serverless computing, which intends to provide both serverless function users and infrastructure developers with key insights and helps them to understand their work more deeply.',
-      img: '/img/architecture.png',
+      img: '/img/serverlessbench-app-workloads.png',
     },
     features: {
       title: 'Feature List',
