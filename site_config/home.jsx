@@ -11,7 +11,7 @@ export default {
       },
       viewOnGithubButton: {
         text: 'GITHUB',
-        link: 'https://github.com/ServerlessBench/ServerlessBench',
+        link: 'https://github.com/SJTU-IPADS/ServerlessBench',
       },
       Dubbo3Button: {
         text: 'SOCC 2020 论文',
@@ -59,7 +59,7 @@ export default {
       },
       viewOnGithubButton: {
         text: 'GITHUB',
-        link: 'https://github.com/ServerlessBench/ServerlessBench',
+        link: 'https://github.com/SJTU-IPADS/ServerlessBench',
       },
       Dubbo3Button: {
         text: 'SOCC 2020 paper comming soon...',

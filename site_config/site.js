@@ -26,7 +26,7 @@ export default {
       {
         key: 'download',
         text: 'DOWNLOAD',
-        link: 'https://github.com/ServerlessBench/serverlessbench',
+        link: 'https://github.com/SJTU-IPADS/serverlessbench',
       },
     ],
     disclaimer: {
@@ -79,7 +79,7 @@ export default {
       {
         key: 'download',
         text: '下载',
-        link: 'https://github.com/ServerlessBench/serverlessbench',
+        link: 'https://github.com/SJTU-IPADS/serverlessbench',
       },
     ],
     disclaimer: {

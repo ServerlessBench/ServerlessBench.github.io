@@ -35,7 +35,7 @@ class Home extends Language {
       }
     });
     // 写死协议，因github会做协议跳转，这种跳转会被Safari拦截
-    fetch('https://api.github.com/repos/ServerlessBench/ServerlessBench')
+    fetch('https://api.github.com/repos/SJTU-IPADS/ServerlessBench')
       .then(res => res.json())
       .then((data) => {
         this.setState({
