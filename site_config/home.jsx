@@ -15,7 +15,7 @@ export default {
       },
       Dubbo3Button: {
         text: 'SOCC 2020 论文',
-        link: '#',
+        link: '/socc20-serverlessbench.pdf',
       }
     },
     introduction: {
@@ -62,8 +62,8 @@ export default {
         link: 'https://github.com/SJTU-IPADS/ServerlessBench',
       },
       Dubbo3Button: {
-        text: 'SOCC 2020 paper comming soon...',
-        link: '#',
+        text: 'SOCC 2020 paper',
+        link: '/socc20-serverlessbench.pdf',
       }
     },
     introduction: {
