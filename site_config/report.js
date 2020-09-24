@@ -16,7 +16,7 @@ export default {
     'zh-cn':{
         sidemenu: [
             {
-                title: '月度汇报',
+                title: '月报',
                 children: [
                     {
                         title: '2020 九月',
@@ -25,7 +25,7 @@ export default {
                 ]
             },
         ],
-        barText: '月报',        
+        barText: '月度汇报',        
     }
         
 }
