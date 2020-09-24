@@ -2,7 +2,7 @@ export default {
     'en-us': {
         sidemenu: [
             {
-                title: 'Monthly Report',
+                title: 'Monthly Reports',
                 children: [
                     {
                         title: 'September 2020',
@@ -11,7 +11,7 @@ export default {
                 ]
             },
         ],
-        barText: 'Monthly Report',
+        barText: 'Monthly Reports',
     },
     'zh-cn':{
         sidemenu: [

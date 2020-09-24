@@ -13,7 +13,7 @@ export default {
       },
       {
         key: 'report',
-        text: 'MONTHLY REPORT',
+        text: 'MONTHLY REPORTS',
         link:'/en-us/docs/report/report-sep-2020.html',
       },
       {
