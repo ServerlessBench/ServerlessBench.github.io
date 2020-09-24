@@ -11,6 +11,11 @@
       }
     },
     {
+      "filename": "report-sep-2020.md",
+      "link": "/en-us/docs/report/report-sep-2020.html",
+      "meta": {}
+    },
+    {
       "filename": "README.md",
       "link": "/en-us/docs/user/README.html",
       "meta": {}
@@ -43,6 +48,11 @@
         "date": "2020-08-08 17:50:00",
         "categories": "main"
       }
+    },
+    {
+      "filename": "report-sep-2020.md",
+      "link": "/zh-cn/docs/report/report-sep-2020.html",
+      "meta": {}
     },
     {
       "filename": "README.md",

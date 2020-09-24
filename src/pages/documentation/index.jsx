@@ -13,6 +13,7 @@ import siteConfig from '../../../site_config/site';
 import docsConfig from '../../../site_config/docs';
 // 开发者页面借用文档页面
 import developConfig from '../../../site_config/develop';
+import reportConfig from '../../../site_config/report';
 import './index.scss';
 
 // 锚点正则
@@ -93,12 +94,13 @@ class Documentation extends Language {
     const language = this.getLanguage();
     // 开发者页借助文档页载体
     const isDevelop = window.location.pathname.split('/').pop().lastIndexOf('_dev.html') !== -1;
-    const dataSource = isDevelop ? developConfig[language] : docsConfig[language];
+    const isConfig = window.location.pathname.split('/').pop().lastIndexOf('report') !== -1;
+    const dataSource = isDevelop ? developConfig[language] : (isConfig ? reportConfig[language] : docsConfig[language]);
     const __html = this.props.__html || this.state.__html;
     return (
       <div className="documentation-page">
       <Header
-        currentKey={isDevelop ? 'developers' : 'docs'}
+        currentKey={isDevelop ? 'developers' : (isConfig ? 'report': 'docs')}
         type="normal"
         logo={`${window.rootPath}/img/serverlessbench-logo.png`}
         language={language}
