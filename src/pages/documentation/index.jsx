@@ -32,6 +32,9 @@ class Documentation extends Language {
 
   componentDidMount() {
     // 通过请求获取生成好的json数据，静态页和json文件在同一个目录下
+    if(window.location.pathname.split('/').pop().lastIndexOf('.html') == -1){
+      window.location.pathname += 'index.html'
+    }
     fetch(window.location.pathname.replace(/\.html$/i, '.json'))
     .then(res => res.json())
     .then((md) => {
@@ -94,7 +97,8 @@ class Documentation extends Language {
     const language = this.getLanguage();
     // 开发者页借助文档页载体
     const isDevelop = window.location.pathname.split('/').pop().lastIndexOf('_dev.html') !== -1;
-    const isConfig = window.location.pathname.split('/').pop().lastIndexOf('report') !== -1;
+    var lastTwoIndex = window.location.pathname.lastIndexOf("\/");
+    const isConfig = window.location.pathname.substring(0, lastTwoIndex+1).lastIndexOf('report') !== -1;
     const dataSource = isDevelop ? developConfig[language] : (isConfig ? reportConfig[language] : docsConfig[language]);
     const __html = this.props.__html || this.state.__html;
     return (

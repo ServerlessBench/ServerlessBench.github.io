@@ -14,7 +14,7 @@ export default {
       {
         key: 'report',
         text: 'MONTHLY REPORTS',
-        link:'/en-us/docs/report/report-sep-2020.html',
+        link:'/en-us/docs/report/index.html',
       },
       {
         key: 'docs',
@@ -72,7 +72,7 @@ export default {
       {
         key: 'report',
         text: '月报',
-        link:'/zh-cn/docs/report/report-sep-2020.html',
+        link:'/zh-cn/docs/report/index.html',
       },
       {
         key: 'docs',
