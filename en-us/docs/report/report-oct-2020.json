@@ -1,6 +1,6 @@
 {
-  "filename": "index.md",
+  "filename": "report-oct-2020.md",
   "__html": "<h2>ServerlessBench Open-source Report - the 2nd issue (Oct 26th, 2020)</h2>\n<p>This is the monthly report of ServerlessBench from 9/21/2020 to 10/26/2020</p>\n<h2>Progress</h2>\n<p>This month we mainly worked on the simulation of the real-world scenario described in &quot;Serverless in the Wild&quot;[ATC' 20] on OpenWhisk. We reference their open-source <a href=\"https://github.com/Azure/AzurePublicDataset\">traces</a> to determine some parameters in the workload.</p>\n<p>We have achieved the following objectives so far:</p>\n<ul>\n<li>Generate function chains (action sequences) with different lengths. The chain lengths satisfy the distribution extracted from the open-source traces.</li>\n<li>Functions in a function chain allocate different sizes of memory. The sizes of the allocated memory satisfies the distribution extracted from the open-source traces</li>\n</ul>\n<p>The workload is not finished yet.</p>\n<h2>Next Month</h2>\n<p>Next, we will continue our ongoing work:</p>\n<ul>\n<li>Finish the workload that simulates real-world scenarios</li>\n<li>Refine the test cases on current platforms and support new platforms</li>\n</ul>\n<p>If there is any problem or requirement, welcome to contact us through the Github (issue) or email.</p>\n",
-  "link": "/en-us/docs/report/index.html",
+  "link": "/en-us/docs/report/report-oct-2020.html",
   "meta": {}
 }
