@@ -41,6 +41,13 @@
       "meta": {
         "title": "Quick start"
       }
+    },
+    {
+      "filename": "socc20.md",
+      "link": "/en-us/docs/user/socc20.html",
+      "meta": {
+        "title": "SOCC'20"
+      }
     }
   ],
   "zh-cn": [
@@ -87,6 +94,13 @@
       "link": "/zh-cn/docs/user/quick-start.html",
       "meta": {
         "title": "快速开始"
+      }
+    },
+    {
+      "filename": "socc20.md",
+      "link": "/zh-cn/docs/user/socc20.html",
+      "meta": {
+        "title": "SOCC'20"
       }
     }
   ]
