@@ -2,6 +2,7 @@
 
 This is the monthly report of ServerlessBench from 9/21/2020 to 10/26/2020
 
+**[10/26/2020]** ServerlessBench's slides on SOCC'20 is uploaded: https://serverlessbench.systems/en-us/docs/user/socc20.html. 
 ## Progress
 
 This month we mainly worked on the simulation of the real-world scenario described in "Serverless in the Wild"[ATC' 20] on OpenWhisk. We reference their open-source [traces](https://github.com/Azure/AzurePublicDataset) to determine some parameters in the workload.
@@ -11,7 +12,7 @@ We have achieved the following objectives so far:
 * Generate function chains (action sequences) with different lengths. The chain lengths satisfy the distribution extracted from the open-source traces.
 * Functions in a function chain allocate different sizes of memory. The sizes of the allocated memory satisfies the distribution extracted from the open-source traces
 
-The workload is not finished yet.
+The workload is not finished yet. The code resides in the SIW branch.
 
 ## Next Month
 
