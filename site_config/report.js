@@ -5,6 +5,10 @@ export default {
                 title: 'Monthly Reports',
                 children: [
                     {
+                        title: 'November 2020',
+                        link:'/en-us/docs/report/report-nov-2020.html', 
+                    },
+                    {
                         title: 'October 2020',
                         link:'/en-us/docs/report/report-oct-2020.html', 
                     },
@@ -22,6 +26,10 @@ export default {
             {
                 title: '月报',
                 children: [
+                    {
+                        title: '2020 十一月',
+                        link:'/zh-cn/docs/report/report-nov-2020.html', 
+                    },
                     {
                         title: '2020 十月',
                         link:'/zh-cn/docs/report/report-oct-2020.html', 

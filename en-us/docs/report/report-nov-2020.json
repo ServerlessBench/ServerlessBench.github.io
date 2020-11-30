@@ -1,6 +1,6 @@
 {
-  "filename": "index.md",
+  "filename": "report-nov-2020.md",
   "__html": "<h2>ServerlessBench Open-source Report - the 3rd issue (Nov 30th, 2020)</h2>\n<p>This is the monthly report of ServerlessBench from 10/26/2020 to 11/31/2020.</p>\n<h2>Progress</h2>\n<p>This month we continued the unfinished work last month: simulatings the real-world scenarios described in &quot;Serverless in the Wild&quot;[ATC' 20] on OpenWhisk.</p>\n<p>So far, the test case (Testcase11) is finished, and will be soon merged into the master branch.</p>\n<p>Please refer the details in the <code>README.md</code> under the corresponding subdirectory after merging.</p>\n<p>Moreover, we have fixed some bugs in our test scripts according to the feedbacks from community through github issues or other ways.</p>\n<p>Welcome to keep on giving us feedback about the project, including functional bugs, usability, document errors, etc. :)</p>\n<h2>Next Month</h2>\n<ul>\n<li>Optimize the project according to current feedbacks.</li>\n</ul>\n",
-  "link": "/en-us/docs/report/index.html",
+  "link": "/en-us/docs/report/report-nov-2020.html",
   "meta": {}
 }
