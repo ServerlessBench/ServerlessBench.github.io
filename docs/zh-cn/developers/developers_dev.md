@@ -15,7 +15,7 @@ Tianyi Yu is a Master student in Shanghai Jiao Tong University.
 Her research interests include cloud computing, virtualization and operating system. 
 Currently, she is focusing on infrastructure of serverless computing.
 
-* Master student
+* Master student (graduated)
 * Institute of Parallel And Distributed Systems
 * School of Software
 * Shanghai Jiao Tong University
@@ -27,17 +27,17 @@ Currently, she is focusing on infrastructure of serverless computing.
 
 <img align="right" width="200" height="256" src="../user/sources/images/qingyuanliu.jpg"/>
 
-Qingyuan Liu is an undergraduate student in Shanghai Jiao Tong University. 
+Qingyuan Liu is a PhD student in Shanghai Jiao Tong University. 
 His research interests include operating systems, cloud computing and virtualization. 
 Recently, he is focusing on infrasturcture of serverless computing.
 
--  Fourth-year undergraduate student
+-  First-year undergraduate student
 -  Institute of Parallel And Distributed Systems
 -  School of Software
 -  Shanghai Jiao Tong University
 -  3401, Software Building, 800 Dongchuan Rd., Shanghai, China
 -  Zip/Postal Code: 200240
--  Email: lqyuan980413 at sjtu dot edu dot cn
+-  Email: liu_qy at sjtu dot edu dot cn
 
 
 
@@ -50,7 +50,7 @@ Dong Du is a PhD student @ Shanghai Jiao Tong University. His research interests
 He has built several systems including OS, compiler, and RISC-V processor (XPC on RISC-V).
 
 
-  * Third-year Ph.D student
+  * Fifth-year Ph.D student
   * Institute of Parallel And Distributed Systems 
   * School of Software 
   * Shanghai Jiao Tong University 
