@@ -12,6 +12,11 @@ export default {
         link: '/en-us/index.html',
       },
       {
+        key: 'report',
+        text: 'MONTHLY REPORTS',
+        link:'/en-us/docs/report/index.html',
+      },
+      {
         key: 'docs',
         text: 'DOCS',
         // target: '_blank',
@@ -63,6 +68,11 @@ export default {
         key: 'home',
         text: '首页',
         link: '/zh-cn/index.html',
+      },
+      {
+        key: 'report',
+        text: '月报',
+        link:'/zh-cn/docs/report/index.html',
       },
       {
         key: 'docs',

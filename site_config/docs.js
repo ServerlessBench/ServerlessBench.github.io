@@ -13,6 +13,10 @@ export default {
                         link: '/en-us/docs/user/quick-start.html'
                     },
                     {
+                        title: 'SOCC 2020',
+                        link: '/en-us/docs/user/socc20.html',
+                    },
+                    {
                         title: 'License',
                         link: '/en-us/docs/user/license.html',
                     },
@@ -33,6 +37,10 @@ export default {
                     {
                         title: '快速开始',
                         link: '/zh-cn/docs/user/quick-start.html'
+                    },
+                    {
+                        title: 'SOCC 2020',
+                        link: '/zh-cn/docs/user/socc20.html'
                     },
                     {
                         title: 'License',

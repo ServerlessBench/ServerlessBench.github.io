@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="report-sep-2020" />
+	<meta name="description" content="report-sep-2020" />
+	<!-- 网页标签标题 -->
+	<!-- <title>report-sep-2020</title> -->
+	<title>ServerlessBench</title> 
+	<link rel="shortcut icon" href="/img/serverlessbench-icon-big.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><img class="logo" src="/img/serverlessbench-logo.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a target="_self" href="/en-us/index.html">HOME</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/en-us/docs/report/index.html">MONTHLY REPORTS</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a target="_self" href="/en-us/docs/user/quick-start.html">DOCS</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/en-us/docs/developers/developers_dev.html">DEVELOPERS</a></li><li class="menu-item menu-item-normal"><a target="_self" href="https://github.com/SJTU-IPADS/serverlessbench">DOWNLOAD</a></li></ul></div></div></header><div class="bar"><div class="bar-body"><img src="/img/docs.png" class="front-img"/><span>Documentation</span><img src="/img/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>Document</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/user/background.html" target="_self">Background</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/user/quick-start.html" target="_self">Quick start</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/user/socc20.html" target="_self">SOCC 2020</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/user/license.html" target="_self">License</a></li></ul></li></ul></div><div class="doc-content markdown-body"><h2>ServerlessBench Open-source Report - the 1st issue (Sep 21st, 2020)</h2>
+<p>Our major work in September is to complete the final version of the paper. Links to download:</p>
+<ul>
+<li>Paper: <a href="https://serverlessbench.systems/socc20-serverlessbench.pdf">https://serverlessbench.systems/socc20-serverlessbench.pdf</a></li>
+<li>Code: <a href="https://github.com/SJTU-IPADS/ServerlessBench">https://github.com/SJTU-IPADS/ServerlessBench</a></li>
+</ul>
+<p>We will next briefly introduce the test cases in the current version and the following plans of the project:</p>
+<h3>Test cases of ServerlessBench</h3>
+<ol>
+<li>
+<p>Two-stage ALU application.</p>
+<p>This test case features a CPU-intensive ALU application with two execution phases: In the first phase, it connects to S3 and requests for a number N (Load configuration phase); in the second phase, 100 threads are spawned to conduct arithmetic calculations and loop for N times (Compute phase).</p>
+</li>
+<li>
+<p>Parallelable ALU application</p>
+<p>This test case features a CPU-intensive ALU application with parallelizable core handling logic. Three versions are presented to analyze parallelization in serverless computing: no-parallel version; instance-parallel version; in-function-parallel version.</p>
+</li>
+<li>
+<p>Long function chain application</p>
+<p>This test case includes the Array Sum application, a serverless application with a configurable number of chained functions. Two versions of the application are provided, implemented with the sequence function chain method and the nested function chain method, respectively.</p>
+</li>
+<li>
+<p>Realworld applications</p>
+<p>This test case includes four real-world serverless applications: Image processing, Alexa skill, Online-compiling, and Data analysis.</p>
+</li>
+<li>
+<p>Data transfer costs</p>
+<p>This test case presents a Node.js serverless application that transfers images with different sizes (the payload size) between two functions. We provide the application to be evaluated on three serverless platforms: OpenWhisk, Fn, AWS Lambda.</p>
+</li>
+<li>
+<p>Startup breakdown</p>
+<p>This test case includes serverless functions with different language runtimes, which can be used to analyze the startup performance of multiple platforms. The applications can be evaluated on two serverless platforms: OpenWhisk, Fn.</p>
+</li>
+<li>
+<p>Sandbox comparison</p>
+<p>A simple Hello function and a more complex serverless function are provided in Python, Ruby, and Node.js.</p>
+</li>
+<li>
+<p>Function size</p>
+<p>The application consists of Python functions with varying package sizes, constructed by packing the handler codes with different dependency packages.</p>
+</li>
+<li>
+<p>Concurrent startup</p>
+<p>Simple Hello functions in C and Java are provided to evaluate the startup latencies when invoked concurrently.</p>
+</li>
+<li>
+<p>Stateless costs</p>
+<p>A Java ImageResize function is provided to analyze the impact of losing implicit states (e.g., JIT profiles) in serverless computing's &quot;stateless&quot; nature.</p>
+</li>
+</ol>
+<h3>Following (short-term) plans</h3>
+<p>The short-term plans mainly include two parts:</p>
+<ul>
+<li>Further refine the test cases on current platforms and support new platforms (e.g., Microsoft Azure)</li>
+<li>Emulate the real-world scenario. Recently we plan to emulate the scenario in &quot;Serverless in the Wild&quot; [ATC'20] and run the test cases on OpenWhisk</li>
+</ul>
+<p>If there is any problem or requirement, welcome to contact us through the Github (issue) or email.</p>
+</div></section><footer class="footer-container"><div class="footer-body"><img class="apache" src="/img/IPADS-logo.png"/><div class="cols-container"><div class="col col-12"><h3></h3><p></p></div><div class="col col-4"><dl><dt>Documentation</dt><dd><a href="/en-us/docs/user/quick-start.html" target="_self">Quick start</a></dd><dd><a href="/en-us/docs/developers/developers_dev.html" target="_self">Members</a></dd><dd><a href="https://github.com/ServerlessBench/serverlessbench.github.io/issues/new" target="_self">Report a Doc Issue</a></dd><dd><a href="https://github.com/ServerlessBench/serverlessbench.github.io/" target="_self">Edit This Page on GitHub</a></dd></dl></div></div><div class="copyright"><span>ServerlessBench is maintained by IPADS Lab @ Shanghai Jiao Tong Univeristy. The website is generated by docsite using Apache Dubbo as the template.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+  <script src="/build/documentation.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112489517-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-112489517-1');
+	</script>
+</body>
+</html>

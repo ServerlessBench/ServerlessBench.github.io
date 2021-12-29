@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="report-sep-2020" />
+	<meta name="description" content="report-sep-2020" />
+	<!-- 网页标签标题 -->
+	<!-- <title>report-sep-2020</title> -->
+	<title>ServerlessBench</title> 
+	<link rel="shortcut icon" href="/img/serverlessbench-icon-big.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/serverlessbench-logo.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a target="_self" href="/zh-cn/index.html">首页</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/zh-cn/docs/report/index.html">月报</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a target="_self" href="/zh-cn/docs/user/quick-start.html">文档</a></li><li class="menu-item menu-item-normal"><a target="_self" href="/zh-cn/docs/developers/developers_dev.html">开发者</a></li><li class="menu-item menu-item-normal"><a target="_self" href="https://github.com/SJTU-IPADS/serverlessbench">下载</a></li></ul></div></div></header><div class="bar"><div class="bar-body"><img src="/img/docs.png" class="front-img"/><span>文档</span><img src="/img/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>文档</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/user/background.html" target="_self">背景</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/user/quick-start.html" target="_self">快速开始</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/user/socc20.html" target="_self">SOCC 2020</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/user/license.html" target="_self">License</a></li></ul></li></ul></div><div class="doc-content markdown-body"><h2>ServerlessBench开源报告·第1期（2020年9月21日）</h2>
+<p>2020年9月的主要任务为完善论文的终稿，下载地址如下：</p>
+<ul>
+<li>
+<p>论文：<a href="https://serverlessbench.systems/socc20-serverlessbench.pdf">https://serverlessbench.systems/socc20-serverlessbench.pdf</a></p>
+</li>
+<li>
+<p>代码：<a href="https://github.com/SJTU-IPADS/ServerlessBench">https://github.com/SJTU-IPADS/ServerlessBench</a></p>
+</li>
+</ul>
+<p>下面会简要介绍当前版本的测试内容，以及该项目的后续计划。</p>
+<h3>ServerlessBench的10个测试集</h3>
+<ol>
+<li>两阶段ALU应用。
+分两个执行阶段：1）连接S3并请求一个数值N；2）循环进行N次ALU运算。
+提供两个版本的实现，用于比较函数拆分对资源利用率的影响：1）单函数版本；2）拆分函数版本，两个函数分别对应两个执行阶段。</li>
+<li>可并行ALU应用。
+提供三个版本的实现，用于比较serverless并行执行方式：1）串行版本；2）函数并行版本；3）函数内并行版本。</li>
+<li>长链数组加和应用（函数数量可配置）。
+提供两个版本的实现，用于比较不同函数组成方式的特性：1）sequence chain版本；2）nested chain版本。</li>
+<li>真实场景serverless应用。
+包括四个应用：1）图像处理；2）Alexa技能；3）在线编译；4）数据分析。</li>
+<li>图像传输应用（传输大小可配置）。
+包括三个平台上的实现，用于比较不同平台的函数间通信开销：1）OpenWhisk（Action Sequence通信）；2）Fn（Fn Flow通信）；3）AWS Lambda（AWS Step Functions或S3通信）。</li>
+<li>不同语言运行时的serverless函数，可分析不同平台上的启动性能。
+包括Fn和OpenWhisk上的版本。</li>
+<li>不同语言运行时的serverless函数，可分析不同sandbox的启动性能。
+Node.js, Python, Ruby三种语言。
+各包括一个简单hello和一个应用函数。</li>
+<li>不同大小的函数。
+由handler函数+不同大小的依赖包组成。</li>
+<li>C和Java的Hello函数，可用于分析并行启动性能。</li>
+<li>Java图像处理函数，可用于分析系统状态丢失带来的性能开销。</li>
+</ol>
+<h3>后续（短期）计划</h3>
+<p>近期计划主要包含两方面：</p>
+<ul>
+<li>完善现有平台的测试以及支持新的平台（如Microsoft Azure）；</li>
+<li>增加真实场景模拟，目前计划以“Serverless in the Wild&quot; [ATC'20]中的场景为主，在OpenWhisk上运行。</li>
+</ul>
+<p>如果有任何需求，欢迎通过微信群或github和我们联系。</p>
+</div></section><footer class="footer-container"><div class="footer-body"><img class="apache" src="/img/IPADS-logo.png"/><div class="cols-container"><div class="col col-12"><h3></h3><p></p></div><div class="col col-4"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/user/quick-start.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/developers/developers_dev.html" target="_self">成员</a></dd><dd><a href="https://github.com/ServerlessBench/serverlessbench.github.io/issues/new" target="_self">报告文档问题</a></dd><dd><a href="https://github.com/ServerlessBench/serverlessbench.github.io/" target="_self">编辑此文档</a></dd></dl></div></div><div class="copyright"><span>ServerlessBench由上海交通大学并行与分布式系统研究所维护。本网页由docsite生成，基于Apache Dubbo网站模板。</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+  <script src="/build/documentation.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112489517-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-112489517-1');
+	</script>
+</body>
+</html>

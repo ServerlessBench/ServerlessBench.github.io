@@ -1,0 +1,9 @@
+{
+  "filename": "background.md",
+  "__html": "<h1>背景</h1>\n<p>Serverless（无服务）是一种新型的计算模式。\n与传统的云计算相比，Serverless具有按需资源分配、按实际使用计费、自动扩缩容等特点，在工业界和学术界都受到越来越多的关注，主流的云平台都提供了Serverless计算服务。然而，由于目前缺乏针对Serverless计算的基准测试工具，现有Serverless平台与应用的表现特性尚未被全面研究，设计人员与开发者也缺少性能分析的参考。</p>\n",
+  "link": "/zh-cn/docs/user/background.html",
+  "meta": {
+    "title": "背景",
+    "description": "本文介绍了Serverless计算的背景"
+  }
+}

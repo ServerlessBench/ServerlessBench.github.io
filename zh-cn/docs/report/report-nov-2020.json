@@ -1,0 +1,6 @@
+{
+  "filename": "report-nov-2020.md",
+  "__html": "<h2>Serverless开源报告·第三期（2020年11月30日）</h2>\n<p>这是2020年10月26日至2020年11月30日的月度报告。</p>\n<h2>进展</h2>\n<p>这个月我们继续了上个月未完成的工作，在OpenWhisk上对&quot;Serverless in the Wild&quot;[ATC' 20] 里描述的现实场景进行了模拟。</p>\n<p>目前，该测试用例 (Testcase11) 的内容已经基本完成，即将被合并入主线。该用例具体信息可在并入主线后，前往子目录下的<code>README.md</code>查看。</p>\n<p>此外，我们根据来自于github Issues以及其他渠道的反馈，对测试脚本存在的一些问题进行了修复。</p>\n<p>欢迎大家继续向我们反馈项目的功能性bug、易用性、文档错误等信息。</p>\n<h2>下个月目标</h2>\n<ul>\n<li>根据现有的反馈，对项目进行优化。</li>\n</ul>\n",
+  "link": "/zh-cn/docs/report/report-nov-2020.html",
+  "meta": {}
+}
